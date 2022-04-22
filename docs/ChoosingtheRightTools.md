@@ -5,6 +5,13 @@
   - [Notepad++](#notepad)
 - [Using command-line editors](#using-command-line-editors)
   - [Vim](#vim)
+    - [Vim summary](#vim-summary)
+    - [.vimrc](#vimrc)
+    - [Vim cheat sheet](#vim-cheat-sheet)
+  - [nano](#nano)
+- [Combining graphical editors with command-line editors when writing shell scripts](#combining-graphical-editors-with-command-line-editors-when-writing-shell-scripts)
+- [Questions](#questions)
+- [Further reading](#further-reading)
 
 ### Technical requirements
 You will need the virtual machine we created in the previous
@@ -216,3 +223,297 @@ using modifiers for this (holding the Shift key in Notepad for
 example), Vim decided on modes. Let's first enter insert mode so
 we can start to type some text. Press the I key, and your screen
 should switch to insert mode:
+
+```bash
+chamara@ubuntu22:~$ vim test.txt
+```
+![alt](img/4.png))
+We've taken the liberty of typing some text while in insert mode.
+Be sure to do the same and when you're done, press Esc to go
+back to normal mode:
+
+If you compare the two screenshots, you should a big difference:
+in the lower-left corner, the text -- INSERT -- is gone! When you're
+in a mode other than normal, that mode is clearly presented
+there. If you do not see anything, you can safely assume you're in
+normal mode. In normal mode, we can navigate using the arrow
+keys. We can also manipulate characters, words, and even
+(multiple) lines with a few key presses! For example, hit dd and
+notice that your whole line just got deleted. If you want to get it
+back, hit u for undo
+
+One challenge remains: exiting Vim. Normally, you might be
+tempted to use the Esc button to exit a program. If you're a little
+familiar with Linux, you might even know that a nice Ctrl + C
+will probably exit most programs as well. However, neither will
+work for Vim: Esc will just land you in normal mode, while
+Ctrl + C will not do anything. To quit Vim, make sure you are in
+normal mode and enter the following:
+
+```bash
+:q!
+```
+This exits your current document, without saving anything. If
+you want to save and exit, use the following:
+
+
+
+```bash
+:x filename.txt
+```
+This saves your current document as filename.txt and returns you
+to your Terminal. Note that normally you'll start Vim on an
+already existing file by using the following command:
+
+```bash
+$ vim filename.txt
+```
+In this case, you do not need to enter a filename when saving and
+exiting; using :x is enough in that case. :x is actually shorthand
+for :wq. :w is the write action, which you use to save a file, and :q is
+used to quit. Combined, they are used to save and quit. If you
+want to save your file at any other time during editing, you can
+just use :w to accomplish this.
+
+##### Vim summary
+Vim has many commands that power users appreciate. For now,
+remember that there are two important modes, normal and
+insert. You can go from normal to insert by pressing I, and you
+can go back to normal mode by pressing Esc. When in insert
+mode, Vim behaves just like Notepad or Word, but in normal
+mode you can perform easy text manipulation, for example
+deleting the whole line currently selected. If you want to exit
+Vim, go to normal mode and enter either :q! or :x, depending on
+whether you want to save the changes or not.
+
+`
+Don't be afraid to start using Vim. While it might seem daunting at first,
+once you get the hang of it you can really perform file-related tasks on
+servers much more quickly. If you want to get a head start, take 30
+minutes of your time and work through vimtutor. This command-line
+tool will get you up to speed with the basic usage of Vim really quickly!
+To start, simply navigate to your virtual machine, type vimtutor, and press
+Enter.
+`
+##### .vimrc
+
+The .vimrc file can be used to set some persistent options for Vim.
+Using this file, you can customize your Vim experience. There
+are many possibilities for customization: popular examples
+include setting the color scheme, converting between tabs and
+spaces, and setting search options.
+
+To create a .vimrc file that will be used when starting Vim, do the
+following:
+
+```bash
+$ cd
+$ vim .vimrc
+```
+The first command places you in your home directory (don't worry,
+this will be explained in greater detail later in this book). The
+second starts a Vim editor for the .vimrc file. Don't forget the dot
+in front, as this is how Linux deals with hidden files (again, more
+on this later on). We're using the following configuration in our
+.vimrc file:
+
+```bash
+set expandtab
+set tabstop=2
+syntax on
+colo peachpuff
+set ignorecase
+set smartcase
+set number
+```
+In order, the following things are achieved with this
+configuration:
+- `set expandtab`: Converts tabs to spaces.
+- `set tabstop=2`: Each tab is converted to two spaces.
+- `syntax on`: Turns on syntax highlighting (by using different
+ colors).
+- `colorscheme peachpuff`: Uses the peachpuff color scheme.
+- `set ignorecase`: Ignores case when searching.
+- `set smartcase`: Doesn't ignore case when searching with one
+ or more uppercase letters.
+- `set number`: shows line numbers.
+
+##### Vim cheat sheet
+To get you started off with some great-to-know commands for
+Vim, we've incorporated a cheat sheet. After working through
+vimtutor, having this cheat sheet nearby almost guarantees you
+can properly use Vim!
+
+Keystrokes are entered directly. Note that the keystrokes are case
+sensitive, so a is different from A. You can either hold Shift for
+the capital letters or use the Caps Lock key. However, the most
+practical approach would be to use Shift:
+
+![alt](./img/5.png)
+![alt](./img/6.png)
+
+#### nano
+GNU nano, commonly referred to as just nano, is another
+command-line editor that is present by default on most Linux
+installations. As the name might suggest, it is part of the GNU
+project, no different than many other parts that make up a Linux
+distribution (remember, Bash is also GNU project software).
+Nano was first released in 1999, with the intention of replacing
+the Pico text editor, a simple text editor created for Unix
+systems.
+
+Nano is much more than a What You See Is What You
+Get (WYSIWYG) tool, definitely when compared to Vim.
+Similar to Notepad and Word, nano does not use different
+modes; it's always ready to start typing your documents or
+scripts.
+
+On your virtual machine, open a nano editor screen:
+
+```bash
+chamara@ubuntu22:~$ nano
+```
+A screen similar to the following should come up:
+![](./img/7.png)
+Feel free to start typing something. It should look something like
+the following:
+
+![](./img/8.png)
+As you can see, the bottom of the screen is reserved for
+presenting what nano calls control keys. While it might not be
+obvious at first, the ^ is shorthand for Ctrl. If you want to exit,
+you hold down Ctrl and press X:
+
+![alt](./img/9.png)
+You will be prompted whether you'd like to exit with or without
+saving your file. In this case, we press Y for Yes. If we started
+nano with a filename, the save and exit would be completed right
+away, but because we started nano without a filename, another
+choice will be presented to us:
+
+Enter a filename and press Enter. You will be back in your
+previous Terminal screen, in the directory where you started
+nano. If everything went well, you can see the file with the
+following command:
+
+```bash 
+chamara@ubuntu22:~$ ls -l
+total 8
+-rw-rw-r-- 1 chamara chamara 29 Apr 22 03:12 nano-test.txt
+-rw-rw-r-- 1 chamara chamara 81 Apr 22 03:07 test.txt
+```
+While nano has more advanced features, for basic usage we have
+discussed the most important features. While it's initially easier
+to use than Vim, it's also not as powerful. Simply said, nano is
+simple, Vim is powerful.
+
+If you do not have any experience and/or preference, our
+recommendation would be to spend a little bit of time learning
+Vim and stick with it. After spending more time with Linux and
+Bash scripting, the advanced features of Vim become hard to live
+without. However, if you can't get used to Vim, don't be ashamed
+to use nano: it's a fine editor that will get most jobs done without
+too much hassle!.
+
+### Combining graphical editors with command-line editors when writing shell scripts
+
+To give you an impression of how we like to combine GUI tools
+with command-line editors, we've given the following example
+workflow. Don't worry about not understanding all steps yet; at
+the end of the book, you should come back to this example and
+understand exactly what we're talking about.
+
+When you're writing shell scripts, you normally go through a few
+phases:
+1. Gather requirements for the shell script.
+2. Design the shell script.
+3. Write the shell script.
+4. Test and adjust the shell script.
+5. (Optional) Submit the working shell scripts to your
+version control system.
+
+Phases 1 and 2 are often done without writing actual code. You
+think about the purpose of the script, how it could be
+implemented, and what is gained by creating the script. These
+steps often involve research and looking for best practices. When
+you feel like you have a good idea about why, what, and how
+you're going to write your shell script, you move on to phase 3:
+writing the script. At this point, you would open your favorite
+
+GUI-based editor and start typing away. Because the GUI editor
+has autocomplete, syntax highlighting, and other productivity
+features built in, you can efficiently write most of the shell script
+code. After you feel like your script is ready for testing, you need
+to move away from your GUI: the script has to be tested on the
+system it's been designed for.
+
+Phase 4 begins. You copy and paste the script to the server, using
+either Vim or nano. Once the script is on the server, you run it.
+Most of the time, it will not actually do everything you expected
+it to do. Tiny mistakes are easy to make and easy to fix, but it
+would be a small hassle to go back to the GUI editor, change it,
+save it, transfer it to the server, and run it again! Luckily, we can
+use either Vim or nano to make minor changes to fix the script
+right there on the server and try again. A missing ; or " will make
+a shell script unusable, but it's fixed quickly (although errors like
+that are often highlighted in the GUI editors, so those are
+unlikely to make it onto the server, even for the first version).
+
+Finally, after a number of iterations, your script will work as
+expected. Now you have to make sure the full and correct script
+is uploaded to your version control system. It's recommended to
+transfer the script from the GUI to the server one last time, to
+see whether you have applied all the changes you made on the
+server to your GUI session as well. Once that is done, commit it,
+and you're finished!
+
+Summary
+In this chapter, we discussed four text editing tools, divided into
+two types: GUI-based editors (Atom and Notepad++) and
+command-line editors (Vim and GNU nano), before showing
+how to use these tools together.
+
+Atom is a powerful text editor that can be configured exactly how
+you want . By default, it has support for many different coding
+languages, including shell. It also comes with Git and GitHub
+integration. We also briefly discussed Notepad++. While not as
+powerful as Atom, it is also suitable for our purposes, as it is
+basically an enhanced Notepad with all the important features
+for shell scripting.
+
+Vim and nano are the two most popular Linux command-line
+text editors. We have learned that while Vim is very powerful, it
+is also harder to learn than nano. However, learning how to
+properly use Vim will speed up many things you do on a Linux
+system and is a very valuable skill to have. For a great hands-on
+introduction to Vim, go through the vimtutor. Nano is much
+easier to use, as it more closely resembles the WYSIWYG editing
+style also found in Microsoft Word and Notepad.
+
+We ended the chapter with an example of a shell scripting
+journey. We gave a brief overview of how to use GUI-based
+editors in combination with command-line editors.
+
+The following commands were introduced in this chapter: vim,
+nano, and ls.
+
+### Questions
+1. Why is syntax highlighting an important feature for text
+editors?
+2. How can we extend the functionality already provided by
+Atom?
+3. What are the benefits of autocomplete when writing shell
+scripts?
+4. How could we describe the difference between Vim and
+GNU nano?
+5. Which are the two most interesting modes in Vim?
+6. What is the .vimrc file?
+7. What do we mean when we call nano a WYSIWYG editor?
+8. Why would we want to combine GUI editors with
+command-line editors?
+
+### Further reading
+The following resource might be interesting if you'd like to go
+- deeper into the subjects of this chapter:
+Hacking Vim 7.2 by Kim Schulz, Packt Publishing: https://
+www.packtpub.com/application-development/hacking-vim-72
