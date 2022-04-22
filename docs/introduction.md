@@ -140,4 +140,4 @@ In the next chapter, we'll set up a local environment which we
 will use throughout the rest of the book, in both the examples
 and exercises.
 
-[link]("https://whimsical.com/linux-9F2aeMv7fBPsQnsR5WoBrg@LUSUr8hW4UQFJJAr6P")
+[link](https://whimsical.com/linux-9F2aeMv7fBPsQnsR5WoBrg@LUSUr8hW4UQFJJAr6P)
