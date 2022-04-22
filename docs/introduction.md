@@ -88,25 +88,25 @@ the bytes from the disk, and so on.
 
 In the earliest days of Unix and computers, no GUIs were
 available, so all work was performed via a CLI. To connect to the
-shell on a running machine, a video terminal was used: often
+shell on a running machine, a `video terminal` was used: often
 this would be a very simple monitor combined with a keyboard,
 which was connected with, for example, a RS-232 serial cable.
-Commands entered on this video terminal were processed by the
+Commands entered on this `video terminal` were processed by the
 shell running on the Unix machine.
 
 Luckily for us, things have changed quite a bit since the first
 computers. Today, we no longer use dedicated hardware to
 connect to shells. A piece of software running in a GUI, a
-terminal emulator, is used for interaction with the shell. Lets
+`terminal emulator`, is used for interaction with the shell. Lets
 take a quick look at how connecting to a Bash shell with a
-terminal emulator can look:
+`terminal emulator` can look:
 
 ![ubuntu server login screen](./img/1.png)
 
 In the preceding screenshot, we're connected to a Linux virtual
 machine (we'll be setting this up in the next chapter), using a
-terminal emulator (GNOME Terminal) via the Secure Shell
-(SSH) protocol. A few interesting things to note:
+`terminal emulator` (GNOME Terminal) via the `Secure Shell
+(SSH)` protocol. A few interesting things to note:
 
 - We're on a CLI interface; we do not have access to, nor do
 we need, a mouse
@@ -122,7 +122,7 @@ provides another important functionality: the ability to execute
 multiple commands sequentially, with or without user
 interaction, tailored to a specific goal. This might sound
 complicated, but it's actually pretty simple: we're talking about
-Bash scripts, the subject of this book!
+`Bash scripts`, the subject of this book!
 
 ### Summary
 In this chapter, you've read about the GNU/Linux operating
