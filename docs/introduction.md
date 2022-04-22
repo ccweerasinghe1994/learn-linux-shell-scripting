@@ -1,3 +1,8 @@
+- [Introduction](#introduction)
+  - [What is Linux?](#what-is-linux)
+  - [What is Bash?](#what-is-bash)
+  - [Summary](#summary)
+
 ## Introduction
 ### What is Linux?
 Linux is a generic term that refers to different open source
