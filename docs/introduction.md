@@ -60,6 +60,9 @@ family. Another prominent Linux distribution, `Fedora`, is based
 on the `Red Hat` family. Other notable distribution families
 include `SUSE, Gentoo,` and `Arch`.
 
+![](./img/2.png)
+[original diagram](https://whimsical.com/linux-9F2aeMv7fBPsQnsR5WoBrg@LUSUr8hW4UQFJJAr6P)
+
 Not many people realize how many devices run the Linux kernel.
 For example, the most common smartphone operating system in
 use today, Android (with a market share of around 85%), uses a
@@ -139,5 +142,3 @@ also utilized to write shell scripts.
 In the next chapter, we'll set up a local environment which we
 will use throughout the rest of the book, in both the examples
 and exercises.
-
-[link](https://whimsical.com/linux-9F2aeMv7fBPsQnsR5WoBrg@LUSUr8hW4UQFJJAr6P)
