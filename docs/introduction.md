@@ -139,3 +139,5 @@ also utilized to write shell scripts.
 In the next chapter, we'll set up a local environment which we
 will use throughout the rest of the book, in both the examples
 and exercises.
+
+<iframe style="border:none" width="800" height="450" src="https://whimsical.com/embed/9F2aeMv7fBPsQnsR5WoBrg"></iframe>
