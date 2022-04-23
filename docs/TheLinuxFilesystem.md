@@ -413,52 +413,37 @@ the primary partition we have already covered: it is mounted on
 /! Let's see how this looks while we check out a new df tool:
 
 ![](img/16.png)
+![](img/17.png)
 
-While this is a lot of output by df (which reports filesystem disk
-space usage), the most interesting was highlighted previously:
-the partition /dev/sda2 of type ext4 (remember?) is mounted on /.
+While this is a lot of output by `df (which reports filesystem disk
+space usage)`, the most interesting was highlighted previously:
+the partition `/dev/sda2` of type `ext4` (remember?) is mounted on /.
 You're getting a preview of the everything is a file later in this
-chapter: /dev/sda2 is handled as a file, but it is actually a reference
-
-to a partition on the disk (which is, in this case, a virtual disk).
-Another example from our Arch Linux host gives even more
+chapter: `/dev/sda2` is `handled as a file`, `but it is actually a reference
+to a partition on the disk (which is, in this case, a virtual disk).`
+Another example from our `Arch Linux` host gives even more
 information (don't worry if you don't have a Linux host, we'll
 explain later):
+![](img/18.png)
 
-```bash
-[root@caladan ~]# df -hT
-Filesystem Type Size Used Avail Use% Mounted on
-dev devtmpfs 7.8G 0 7.8G 0% /dev
-run tmpfs 7.8G 1.5M 7.8G 1% /run
-/dev/mapper/vg_caladan-lv_arch_root ext4 50G 29G 19G 60% /
-tmpfs tmpfs 7.8G 287M 7.5G 4% /dev/shm
-tmpfs tmpfs 7.8G 0 7.8G 0% /sys/fs/cgroup
-tmpfs tmpfs 7.8G 212K 7.8G 1% /tmp
-/dev/sda1 vfat 550M 97M 453M 18% /boot
-tmpfs tmpfs 1.6G 16K 1.6G 1% /run/user/120
-tmpfs tmpfs 1.6G 14M 1.6G 1% /run/user/1000
-/dev/sdc1 vfat 15G 552M 14G 4% /run/media/tammert/ARCH_201803
-/dev/mapper/vg_caladan-lv_data btrfs 10G 17M 9.8G 1% /data
-```
-
-You can see I have an ext4 filesystem mounted as my root.
-However, I also have an extra btrfs partition mounted on /data/
-and a vfat boot partition (which is needed on bare-metal
-installations, but not on virtual machines) on /boot/. To top it off,
-there's also a vfat USB device with the Arch Linux installer
-connected, which was automatically mounted under /run/media/.
-So not only does Linux handle multiple partitions or disks
+You can see I have an `ext4` filesystem mounted as my `root`.
+However, I also have an extra `btrfs` partition mounted on `/data/`
+and a `vfat` boot partition `(which is needed on bare-metal
+installations, but not on virtual machines)` on `/boot/`. To top it off,
+there's also a `vfat` `USB device` with the `Arch Linux installer`
+connected, which was automatically mounted under `/run/media/`.
+So `not only does Linux handle multiple partitions or disks
 gracefully, even different types of filesystems can be used side by
-side under the same tree structure!
+side under the same tree structure!`
 
 ##### /bin/, /sbin/, and /usr/
 
-Let's get back to top-level directories. We'll discuss /bin/, /sbin/,
-and /usr/ first, because they are really similar. As stated in the
-overview, all of these directories contain binaries used by normal
-users and administrators of the system. Let's see where those
+Let's get back to top-level directories. We'll discuss `/bin/`, `/sbin/`,
+and `/usr/` first, because they are really similar. As stated in the
+overview, `all of these directories contain binaries used by normal
+users and administrators of the system`. Let's see where those
 binaries are and how our user session knows how to find them in
-the process. We'll manage this by using the echo command. Its
+the process. We'll manage this by using the `echo` command. Its
 short description is simply display a line of text. Let's see how it
 works:
 
@@ -473,10 +458,10 @@ is displayed (pretty much just as promised by the short
 description!). If we pass text, which we enclose in single quotes,
 that text is printed instead. In this context, a bit of text which
 contains either letters, numbers, or other characters is referred
-to as a string. So, any string we pass to echo will be printed in our
+to as a `string`. So, any string we pass to echo will be printed in our
 Terminal. While this might not seem that interesting, it is
-interesting when you start to consider variables. A variable is a
-string which value is, as the name implies, variable from time to
+interesting when you start to consider `variables`. `A variable is a
+string which value` is, as the name implies, variable from time to
 time. Let's use echo to print the current value of the variable
 BASH_VERSION:
 
@@ -489,8 +474,8 @@ reader@ubuntu:~$
 ```
 You should notice we did not use the echo BASH_VERSION command,
 since that would print the literal text BASH_VERSION, but we instead
-started the variable name with a $. In Bash, the $ denotes the fact
-that we're using a variable (we will explain variables and
+started the `variable` name with a `$`. In Bash, the `$` denotes the fact
+that we're using a `variable` (we will explain variables and
 variable interpolation further in Chapter 8, Variables and User
 Input). Why are we telling you this? Because the binaries we can
 use from our Terminal are found by using a variable, specifically
@@ -501,17 +486,17 @@ reader@ubuntu:~$ echo $PATH
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin <SNIPPED>
 reader@ubuntu:~$
 ```
-As you can see here, binaries need to be in the /usr/local/sbin/,
-/usr/local/bin/, /usr/sbin/, /usr/bin/, /sbin/, or /bin/ directory for us to
+As you can see here, binaries need to be in the `/usr/local/sbin/`,
+`/usr/local/bin/`, `/usr/sbin/`, `/usr/bin/`, `/sbin/`, or `/bin/` directory for us to
 be able to use them (with the current value of PATH, which we can
 change, but that's out of scope for now). That would mean that
-binaries we've been using up until now (cd, ls, pwd, and echo) would
+`binaries` we've been using up until now (`cd, ls, pwd, and echo`) would
 need to be in one of these directories so that we can use them,
 right? Unfortunately, this is where things get slightly
-complicated. On Linux, we basically use two types of binaries:
-those that are found on disk (in a directory as specified by the
-PATH variable), or they can be built into the shell we're using, then
-called a shell builtin. A good example is actually the echo
+complicated. On Linux, we basically use `two` types of `binaries`:
+those that are found on `disk` `(in a directory as specified by the
+PATH variable)`, or `they can be built into the shell we're using`, then
+called a `shell builtin`. A good example is actually the echo
 command we just learned, which is both! We can see what type
 of command we're dealing with by using type:
 
@@ -522,51 +507,51 @@ echo is /bin/echo
 reader@ubuntu:~$ type -a cdcd is a shell builtin
 reader@ubuntu:~$
 ```
-If a command is both built-in and a binary within the PATH, the
-binary is used. If it is only present as a built-in, such as cd, the
+`If a command is both built-in and a binary within the PATH, the
+binary is used`. If it is only present as a built-in, such as cd, the
 built-in is used. As a general rule, most commands you use will
 be binaries on disk, as found in your PATH. Furthermore, most of
-these will be present in the /usr/bin/ directory (on our Ubuntu
-virtual machine, more than half of the total binaries are present
-in /usr/bin/!).
+these will be present in the `/usr/bin/` directory (on our Ubuntu
+virtual machine, `more than half of the total binaries are present
+in /usr/bin/!)`.
 
 So, the overall goal of the binary directories should be clear: to
 provide us with the tools we need to perform our work. The
-question remains, why are there (at least) six different
-directories, and why are they divided between bin and sbin? The
-answer to the last part of the question is easy: bin has normal
-utilities used by users, while sbin has utilities used by system
-administrators. In that last category, tools related to disk
+question remains, `why are there (at least) six different
+directories, and why are they divided between bin and sbin?` The
+answer to the last part of the question is easy: `bin has normal
+utilities used by users`, while `sbin has utilities used by system
+administrators`. In that last category, tools related to disk
 maintenance, network configuration, and firewalling, for
 example, are found. The bin directories contain utilities that are
 used for filesystem operations (such as creating and removing
 files/directories), archiving, and listing information about the
 system, among others.
 
-The difference between the top-level /(s)bin/ and /usr/(s)bin/ is a
-bit more vague. In general, the rule is that essential tools are
-found in /(s)bin, while system-specific binaries are placed in the
-/usr/(s)bin directories. So if you installed a package to run a web
-server, it would be placed in either /usr/bin/ or /usr/sbin/, since it is
-system-specific. Finally, the /usr/local/(s)bin/ directories are, in our
-experience, most often used for binaries that are installed
-manually, instead of from a package manager. But you could
+The difference between the top-level `/(s)bin/` and `/usr/(s)bin/` is a
+bit more `vague`. In general, the rule is that `essential tools are
+found in /(s)bin`, while `system-specific binaries are placed in the
+/usr/(s)bin directories`. So if you installed a package to run a web
+server, it would be placed in either` /usr/bin/` or `/usr/sbin/`, since it is
+system-specific. Finally, the `/usr/local/(s)bin/` directories are, in our
+experience, most often used for `binaries that are installed
+manually`, `instead of from a package manager`. But you could
 place them in either directory of the PATH to work; it's mostly a
 matter of convention.
 
-As a final note, /usr/ contains more than just binaries. Among
+As a final note, `/usr/` contains `more than just binaries`. Among
 these are some libraries (which have the same relation to the
-/lib/ and /lib64/ top-level directories) and some miscellaneous
+`/lib/` and `/lib64/` top-level directories) and some miscellaneous
 files. If you're curious, we would definitely recommend checking
-out the rest of the /usr/ directory using cd and ls, but the most
+out the rest of the `/usr/` directory using `cd` and `ls`, but the most
 important thing to remember is that binaries and libraries
 can be located here.
 
 ##### /etc/
 On to the next interesting top-level directory within the Linux
-filesystem: the /etc/ directory. Pronounced et-c as in et-cetera, it
-is used to store configuration files for both system software as
-well as user software. Let's see what it contains:
+filesystem: the `/etc/` directory. Pronounced `et-c` as in `et-cetera`, it
+is used to store `configuration files` for both `system software` as
+well as `user software`. Let's see what it contains:
 
 ```bash
 reader@ubuntu:/etc# ls
@@ -584,30 +569,30 @@ UUID=376cd784-7c8f-11e8-a415-080027a7d0ea / ext4 defaults 0 0
 /swap.img none swap sw 0 0
 reader@ubuntu:/etc$
 ```
-What we're seeing here is the file systems table, or fstab file. It
-contains the instructions for Linux to mount the filesystems at
-each start. As we can see here, we're referencing a partition by its
-Universally Unique Identifier (UUID) and we're mounting
-it on /, so as the root filesystem. It's of type ext4, mounted using
-options defaults. The last two zeros deal with backups and checks
+What we're seeing here is the `file systems table`, or `fstab` file. It
+contains the instructions for Linux to `mount the filesystems` at
+`each start`. As we can see here, we're referencing a partition by its
+`Universally Unique Identifier (UUID)` and we're mounting
+it on `/`, so as the `root filesystem`. It's of type `ext4`, mounted using
+options `defaults`. The `last two zeros` deal with `backups` and `checks`
 at the start of the system. On the second line, we see we're using
-a file as swap space. Swap is used in case there isn't enough
-memory available to the system, which can be compensated forby writing it to disk (but incurring a hefty performance penalty,
-since a disk is much slower than RAM).
+a file as `swap space`. `Swap is used in case there isn't enough
+memory available to the system`, `which can be compensated forby writing it to disk (but incurring a hefty performance penalty,
+since a disk is much slower than RAM).`
 
-Another interesting configuration file in the /etc/ directory is the
-passwd file. While it sounds like password, don't worry, those
-aren't stored there. Let's check the contents using the less
+Another interesting configuration file in the `/etc/` directory is the
+`passwd` file. While it sounds like password, don't worry, those
+aren't stored there. Let's check the contents using the `less`
 command:
 
 ```bash
 reader@ubuntu:/etc$ less passwd
 ```
-This will open the file in a so-called pager, in read-only mode.
-less uses Vim commands, so you can quit by pressing the Q on
+This will open the file in a so-called pager, in `read-only` mode.
+less uses `Vim` commands, so you can quit by pressing the `Q` on
 your keyboard. If the file is larger than your screen, you can
-navigate up and down with the Vim keystrokes: either the arrow
-keys or by using J and K. When in the less, the screen should look
+navigate up and down with the `Vim keystrokes`: either the `arrow
+keys` or by using `J` and `K`. When in the less, the screen should look
 something like the following:
 
 ```bash
@@ -622,38 +607,38 @@ order, the fields separated by the : denote the following:
 
 ![alt](./img/13.png)
 
-While there is a password field here, this is because of legacyreasons; the (hashed!) password has been moved to the /etc/shadow
-file, which can only be read by the root superuser. We will cover
-the UID and GID in the next chapter; the other fields should be
+While there is a password field here, this is because of legacy reasons; the (hashed!) `password` has been moved to the `/etc/shadow`
+file, which can only be read by the `root superuser`. We will cover
+the `UID` and `GID` in the next chapter; the other fields should be
 clear by now.
 
 These are just two examples of configuration files found in the
-/etc/ directory (important ones though!).
+`/etc/ directory` (important ones though!).
 
 ##### /opt/, /tmp/, and /var/
 
-On a fresh installation of Ubuntu, the /opt/ directory is empty.
+On a fresh installation of Ubuntu, the `/opt/` directory is `empty`.
 While it is again a matter of convention, in our experience, this
-directory is most often used to install software that comes from
-outside the distribution's package manager. However, some
+directory is most often used to `install software that comes from
+outside the distribution's package manager`. However, `some
 applications that are installed with the package manager do use
-/opt/ for their files; it's all a matter of preference by the package
-maintainer. In our case, we will be using this directory to save
-the shell scripts we'll be creating, as these definitely classify as
+/opt/ for their files`; it's all a matter of preference by the package
+maintainer. In our case, `we will be using this directory to save
+the shell scripts we'll be creating`, as these definitely classify as
 optional software.
 
-The /tmp/ directory is used for temporary files (who would have
-guessed?). In some Linux distributions, /tmp/ is not part of the
-root partition but mounted as a separate tmpfs filesystem. This
+The `/tmp/` directory is used for temporary files (who would have
+guessed?). In some Linux distributions, `/tmp/` is not part of the
+root partition but mounted as a separate `tmpfs filesystem`. This
 type of filesystem is allocated within the RAM, which means the
-contents of /tmp/ do not survive a reboot. Since we're dealing with
+contents of `/tmp/ do not survive a reboot`. Since we're dealing with
 temporary files, this is sometimes not only a nice feature, but a
 prerequisite for particular uses. For a desktop Linux user, this
 could for example be used to save a note which is only needed
 during the active session, without having to worry about cleaning
 it up after you're done.
 
-Finally, the /var/ directory is a little more complex. Let's have a
+Finally, the `/var/` directory is a little more complex. Let's have a
 look:
 
 ```bash
@@ -676,17 +661,17 @@ drwxr-xr-x 3 root root 4096 Jul 29 12:30 www
 reader@ubuntu:/var$
 ```
 
-As you should see, /var/ contains many subdirectories and some
-symlinks (which are denoted by the -> characters). In this case,
-/var/run/ is actually a shortcut to the top-level directory /run. The
-most interesting subdirectories within /var/ (for now) are log/ and
-mail/.
+As you should see, `/var/` contains many subdirectories and some
+`symlinks` (which are denoted by the `->` characters). In this case,
+`/var/run/` is actually a shortcut to the top-level directory `/run`. The
+most interesting subdirectories within `/var/ (for now)` are `log/` and
+`mail/`.
 
-/var/log/ is conventionally used to save log files for most system
+`/var/log/` is conventionally used to save log files for most system
 and user processes. In our experience, most third-party software
 installed on a Linux system will adhere to this convention and
-will output log files to the /var/log/ directory, or create a
-subdirectory in /var/log/. Let's look at an example of a log file
+will output `log files` to the `/var/log/` directory, or create a
+subdirectory in `/var/log/`. Let's look at an example of a log file
 using less with a fully qualified path:
 
 ```bash
@@ -704,10 +689,10 @@ Jun 30 18:20:32 ubuntu kernel: [ 0.000000] AMD AuthenticAMD
 ...<SNIPPED>:
 ```
 
-This log file contains information about the kernel boot process.
-You can see a reference to the actual kernel on disk, /boot/vmlinuz-
-4.15.0-23-generic, and the UUID of the filesystem being mounted at
-root, UUID=376cd784-7c8f-11e8-a415-080027a7d0ea. This file would be
+This log file contains information about the `kernel boot process`.
+You can see a reference to the actual kernel on disk, `/boot/vmlinuz-
+4.15.0-23-generic`, and the `UUID` of the filesystem being mounted at
+root, `UUID=376cd784-7c8f-11e8-a415-080027a7d0ea`. This file would be
 something you would check if your system has trouble booting or
 if some functionality does not seem to be working!
 
@@ -715,9 +700,9 @@ In the earliest days of Unix and Linux, sending mail was
 something that wasn't only used over the internet (which was in
 its mere infancy at that time), but also to relay messages between
 servers or users on the same server. On your new Ubuntu virtual
-machine, the /var/mail/ directory and its symlink, /var/spool/mail/,
-will be empty. However, once we start talking about scheduling
-and logging, we will see that this directory will be used to store
+machine, the `/var/mail/` directory and its `symlink`, `/var/spool/mail/`,
+will be empty. However, once we start talking about `scheduling`
+and `logging`, we will see that this directory will be used to store
 messages.
 
 That concludes the short description about the top-level
@@ -751,9 +736,9 @@ used by Linux to represent them:
 ![alt](./img/14.png)
 
 Out of these seven file types, you will first encounter just the
-regular files (-) and the directories (d). Next, you will probably
-interact some more with symlinks (l), block devices (b), and
-special files (c). Very rarely will you use the last two: sockets (s) and named pipes (p).
+`regular files` `(-)` and the `directories` `(d)`. Next, you will probably
+interact some more with `symlinks` `(l)`, `block devices` `(b)`, and
+`special files` `(c)`. Very rarely will you use the last two: `sockets` `(s)` and `named pipes` `(p)`.
 
 A good place to encounter the most common file types is in /dev/.
 Let's use ls to see what it contains:
@@ -790,7 +775,7 @@ crw--w---- 1 root tty 4, 1 Jul 29 15:04 tty1
 reader@ubuntu:/dev$
 ```
 
-As you saw from your output, /dev/ contains a lot of files, with
+As you saw from your output, `/dev/` contains a lot of files, with
 most of the types as outlined above. Ironically, it does not
 contain the most common file type: regular files. However,
 because we have been interacting with regular files until now,
@@ -799,45 +784,45 @@ rest of the book will definitely give you an idea).
 
 
 So, let's look at anything other than a regular file. Let's start with
-the most familiar: directories. Any line that starts with a d is a
+the most familiar: `directories`. Any line that starts with a `d` is a
 directory, and, if you're using SSH, will most probably be
 represented in a different color as well. Do not underestimate
 how important this visual aid is, as it will save you a lot of time
 when you're navigating a Linux machine. Remember, you can
-move into a directory by using either cd with a relative path or a
+move into a directory by using either `cd` with a relative path or a
 fully qualified path, which always starts from the root of the
 filesystem.
 
-Next, you will see files starting with the b. These files are used to
-represent block devices, the most common usage being a disk
-device or partition. Under most Linux distributions, disks are
-often called /dev/sda, /dev/sdb, and so on. Partitions on those disks
-are referred to with a number: /dev/sda1, /dev/sda2, and further. As
+Next, you will see files starting with the `b`. These files are used to
+represent `block devices`, the most common usage being a `disk
+device or partition`. Under most Linux distributions, disks are
+often called `/dev/sda`, `/dev/sdb`, and so on. Partitions on those disks
+are referred to with a `number`: `/dev/sda1`, `/dev/sda2`, and further. As
 you can see in the preceding output, our system has a single disk
-(only /dev/sda). That disk does, however, have two partitions:
-/dev/sda1 and /dev/sda2. Try using df -hT again, and you will notice
-/dev/sda2 mounted as the root filesystem (unless your virtual
+`(only /dev/sda)`. That disk does, however, have two partitions:
+`/dev/sda1` and `/dev/sda2`. Try using `df -hT` again, and you will notice
+`/dev/sda2` mounted as the `root filesystem (unless your virtual
 machine was configured differently, in which case it might be
-/dev/sda1 or even /dev/sda3).
+/dev/sda1 or even /dev/sda3)`.
 
-Symlinks are often used on Linux. Look in the preceding output
-for the entry cdrom, which you will see starts with an l. The term
-cdrom has contextual meaning: it refers to the CD (or more
+`Symlinks` are often used on Linux. Look in the preceding output
+for the entry `cdrom`, which you will see starts with an `l`. The term
+`cdrom` has contextual meaning: it refers to the CD (or more
 probably, in a newer system, the DVD) drive. However, it is
 linked to the actual block device that handles the interaction,
-/dev/sr0, which starts with the b for block device. Using a symlink
+`/dev/sr0`, which starts with the `b` for `block device`. Using a symlink
 makes it easy to find the item you need (the disk drive) while still
-preserving the Linux configuration which calls the device
-handler sr0.
+preserving the Linux configuration which calls the `device
+handler sr0`.
 
-Finally, you should see a long list of files called tty. These are
-denoted by a c at the beginning of the line, indicating a special
-file. To keep it simple, you should consider a tty as a Terminal
+Finally, you should see a long list of files called `tty`. These are
+denoted by a `c` at the beginning of the line, indicating a `special
+file`. To keep it simple, you should consider a `tty as a Terminal
 
-you use to connect to your Linux server. These are a kind of
+you use to connect to your Linux server`. `These are a kind of
 virtual device that Linux uses to allow interaction from the user
 with the system. Many virtual and physical devices use the
-special file handlers when they appear on your Linux filesystem.
+special file handlers when they appear on your Linux filesystem.`
 
 
 `This chapter introduced you to many commands. Perhaps you have
