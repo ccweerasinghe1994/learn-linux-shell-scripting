@@ -258,35 +258,7 @@ discussed in the next chapter). However, even with color
 assistance, this still feels unclear. Let's clean it up a bit by using
 an option on the ls command:
 
-```bash
-reader@ubuntu:/$ ls -l
-total 2017372
-drwxr-xr-x 2 root root 4096 Jul 28 10:31 bin
-drwxr-xr-x 3 root root 4096 Jul 28 10:32 boot
-drwxr-xr-x 19 root root 3900 Jul 28 10:31 dev
-drwxr-xr-x 90 root root 4096 Jul 28 10:32 etc
-drwxr-xr-x 3 root root 4096 Jun 30 18:20 home
-lrwxrwxrwx 1 root root 33 Jul 27 11:39 initrd.img -> boot/initrd.img-4.15.0-29-generi
-lrwxrwxrwx 1 root root 33 Jul 27 11:39 initrd.img.old -> boot/initrd.img-4.15.0-23-ge
-drwxr-xr-x 22 root root 4096 Apr 26 19:09 lib
-drwxr-xr-x 2 root root 4096 Apr 26 19:07 lib64
-drwx------ 2 root root 16384 Jun 30 17:58 lost+found
-drwxr-xr-x 2 root root 4096 Apr 26 19:07 media
-drwxr-xr-x 2 root root 4096 Apr 26 19:07 mnt
-drwxr-xr-x 2 root root 4096 Apr 26 19:07 opt
-dr-xr-xr-x 97 root root 0 Jul 28 10:30 proc
-drwx------ 3 root root 4096 Jul 1 09:40 root
-drwxr-xr-x 26 root root 920 Jul 28 14:15 run
-drwxr-xr-x 2 root root 12288 Jul 28 10:31 sbin
-drwxr-xr-x 4 root root 4096 Jun 30 18:20 snap
-drwxr-xr-x 2 root root 4096 Apr 26 19:07 srv
--rw------- 1 root root 2065694720 Jun 30 18:00 swap.img
-dr-xr-xr-x 13 root root 0 Jul 28 10:30 sys
-drwxrwxrwt 9 root root 4096 Jul 28 14:32 tmp
-drwxr-xr-x 10 root root 4096 Apr 26 19:07 usr
-drwxr-xr-x 13 root root 4096 Apr 26 19:10 var
-lrwxrwxrwx 1 root root 30 Jul 27 11:39 vmlinuz -> boot/vmlinuz-4.15.0-29-generi
-```
+![](./img/15.png)
 
 The option -l (hyphen lowercase l, as in long) to ls gives the long
 listing format. Among other things, this prints the
