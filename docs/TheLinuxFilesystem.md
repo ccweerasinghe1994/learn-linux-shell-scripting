@@ -206,33 +206,38 @@ for most Linux distributions: /home/$USERNAME/. Since we created the
 primary user reader, this is where we expect to be. For those of
 you coming from Windows, this might look very foreign: where
 is the drive name (C:, D:, and so on) and why are we using
-(forward) slashes instead of backslashes?
+(forward) slashes instead of `backslashes`?
 
-Linux, as well as Unix and other Unix-like systems, uses a tree
-structure. It is referred to as a tree because it starts at a single
-origin point, the root (found at /). Directories are nested from
+Linux, as well as Unix and other Unix-like systems, uses a `tree
+structure`. It is referred to as a tree because it starts at a `single
+origin point`, the root (found at /). Directories are nested from
 there (like branches from a tree), not much differently from
-other operating systems. Finally, the tree structure ends in files
-that are considered the leaves of the tree. This might sound
+other operating systems. Finally, the tree structure ends in `files`
+that are considered the `leaves` of the tree. This might sound
 terribly complicated still, but it's actually relatively simple. Let's
 keep exploring to make sure we fully understand this structure!
 Under Linux, we use the cd command to change directories. It
 works by entering cd, followed by the location on the filesystem
 where we want to go as the argument to the command. Navigate
-to the filesystem root:
+to the filesystem `root`:
 
 ```bash
 reader@ubuntu:~$ cd /
 reader@ubuntu:/$
+
 ```
 
+```bash
+➜  / ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  lost+found  media  mnt  opt  proc  root  run  sbin  snap  srv  sys  tmp  usr  var
+```
 As you can see, nothing much seems to have happened.
 However, there is one tiny difference in your Terminal prompt:
 the ~ character has been replaced by /. Under Ubuntu, the default
 configuration shows the location on the filesystem without
 needing to use the pwd command. The prompt is built as follows:
-<username>@<hostname>:<location>$. Why the ~ then? Simple: the tilde
-character is shorthand for the user's home directory! If the
+<username>@<hostname>:<location>$. Why the ~ then? Simple: the `tilde`
+character is `shorthand` for the `user's home directory`! If the
 shorthand wasn't there, the prompt at login would be
 
 ```bash
