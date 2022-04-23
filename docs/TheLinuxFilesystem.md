@@ -86,14 +86,15 @@ installed in the operating system, these can all be used. Even
 better, all of these can even be used concurrently! We will
 discuss this further later in this chapter.
 
-Another interesting thing to note is that, while ext4 is native to
+Another interesting thing to note is that, while `ext4` is native to
 Linux, with the help of drivers it can be used under, for example,
-Windows as well. You would not use ext4 as the filesystem for
-the primary drive under Windows, but you could mount a Linuxformatted ext4 filesystem under Windows and interact with the
+Windows as well. You would not use `ext4` as the filesystem for
+the primary drive under Windows, but you could mount a Linux
+formatted `ext4` filesystem under Windows and interact with the
 contents. The other way around, mounting a Windows filesystem
 under Linux, is also supported for most implementations. And
-while we used ext4 as the example here, the same goes for XFS
-and Btrfs.
+while we used `ext4` as the example here, the same goes for `XFS`
+and `Btrfs`.
 
 #### What makes the Linux filesystem unique?
 
@@ -101,27 +102,27 @@ As should be clear by now, in reality, there is no such thing as the
 Linux filesystem. However, these filesystems share certain
 characteristics that make them viable as Linux filesystems.
 
-A Linux filesystem adheres to the Filesystem Hierarchy
-Standard (FHS). This FHS is maintained by The Linux
+A Linux filesystem adheres to the `Filesystem Hierarchy
+Standard (FHS).` This `FHS` is maintained by The Linux
 Foundation and is currently up to version 3.0. As with many
 things in the Linux ecosystem, it is based on a Unix predecessor:
-the Unix Filesystem Standard (UFS). It specifies the
-directory structure and its contents. We'll explore this
+the `Unix Filesystem Standard (UFS).` It specifies the
+`directory structure` and its contents. We'll explore this
 structure together in the next part of this chapter.
 
 Since Linux is most commonly used in servers, Linux filesystem
 implementations (often) have very advanced features on the
-topic of file integrity and disaster recovery. An example of such a
-disaster would be a system experiencing a power outage when it
-was in the middle of writing a business-critical file. If the write
-operation was stored in memory and aborted halfway through,
-the file would be in an inconsistent state. When the system is
+topic of `file integrity` and `disaster recovery`. An example of such a
+disaster would be a system experiencing a `power outage` when it
+was in the middle of `writing a business-critical file`. If the write
+operation was stored in memory and aborted `halfway through`,
+the file would be in an `inconsistent state`. When the system is
 brought up again, the operating system does not have the write
 operation in memory anymore (since memory is cleared on each
 reboot), and only a part of the file will be written. Obviously, this
 is unwanted behavior and can lead to problems. Because of the
-properties of COW, Btrfs does not have this problem. However,
-ext4 and XFS are not COW filesystems. They both handle this
+properties of `COW`, `Btrfs` does not have this problem. However,
+`ext4` and `XFS` are `not COW` filesystems. They both handle this
 issue in another way: with journaling:
 
 ![](./img/10.png)
