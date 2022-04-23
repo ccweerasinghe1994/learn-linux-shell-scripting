@@ -65,18 +65,18 @@ reliability is the most important consideration.
 `XFS` is most famously used in `Red Hat distributions` (Red Hat
 Enterprise Linux, CentOS, and Fedora). It contains some
 features that are more advanced than ext4, such as `parallel I/O`,
-`larger file size support`, and better handling of large files.
+`larger file size support`, and `better handling of large files`.
 
-Finally, there is Btrfs. This filesystem implementation was
-initially designed at Oracle and is considered stable as of 2014.
-Btrfs has many advanced features that could make it preferable
-to ext4 and XFS; the principal developer of ext4 even stated that
-ext4 should eventually be replaced by Btrfs. The most interesting
-feature of Btrfs is that it uses the copy-on-write (COW)
-principle: files that are copied aren't actually written out to the
+Finally, there is `Btrfs`. This filesystem implementation was
+initially designed at `Oracle` and is considered stable as of 2014.
+`Btrfs` has many advanced features that could make it preferable
+to `ext4` and `XFS`; the principal developer of `ext4` even stated that
+`ext4` should eventually be replaced by `Btrfs`. The most interesting
+feature of `Btrfs` is that it uses the `copy-on-write (COW)`
+principle: `files that are copied aren't actually written out to the
 physical medium fully, but only a new pointer to the same data is
 created. Only when either the copy or the original gets modified
-is new data written.
+is new data written.`
 
 As you might have guessed, a filesystem implementation is
 nothing more than software. For Linux, the three
