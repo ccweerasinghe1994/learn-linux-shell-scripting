@@ -225,7 +225,7 @@ we can start to type some text. Press the I key, and your screen
 should switch to insert mode:
 
 ```bash
-chamara@ubuntu22:~$ `Vim` test.txt
+chamara@ubuntu22:~$ vim test.txt
 ```
 ![alt](img/4.png))
 
