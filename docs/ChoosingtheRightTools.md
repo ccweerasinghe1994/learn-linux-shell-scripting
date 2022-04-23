@@ -380,12 +380,14 @@ Feel free to start typing something. It should look something like
 the following:
 
 ![](./img/8.png)
+
 As you can see, the bottom of the screen is reserved for
 presenting what nano calls `control keys`. While it might not be
 obvious at first, the ^ is shorthand for Ctrl. If you want to exit,
 you hold down Ctrl and press X:
 
 ![alt](./img/9.png)
+
 You will be prompted whether you'd like to exit with or without
 saving your file. In this case, we press Y for Yes. If we started
 nano with a filename, the save and exit would be completed right
