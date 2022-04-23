@@ -16,7 +16,7 @@
 - [Further reading](#further-reading)
 ### Technical requirements
 We will explore the Linux filesystem using the virtual machine
-we created in Chapter 2, Setting Up Your Local Environment.
+we created in `Chapter 2`, Setting Up Your Local Environment.
 
 `
 If you run into issues with connecting to your virtual machine, make
