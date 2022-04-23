@@ -205,7 +205,7 @@ $ ssh chamra@192.168.163.131 -p 22
 ```
 Once logged in, open `Vim` to an empty file:
 ```bash
-chamara@ubuntu22:~$ `Vim`
+chamara@ubuntu22:~$ Vim
 ```
 You should be greeted by something looking approximately like
 the following:
@@ -228,6 +228,7 @@ should switch to insert mode:
 chamara@ubuntu22:~$ `Vim` test.txt
 ```
 ![alt](img/4.png))
+
 We've taken the liberty of typing some text while in insert mode.
 Be sure to do the same and when you're done, press Esc to go
 back to normal mode:
