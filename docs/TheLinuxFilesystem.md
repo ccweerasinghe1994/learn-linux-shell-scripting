@@ -145,7 +145,7 @@ server fail between steps 1 and 2, the actual instruction to write
 to disk has never been given and the software giving the
 instruction should account for that possibility.
 
-`Full disclosure: This part about journaling is a bit of an
+`Full disclosure: This part about `journaling` is a bit of an
 oversimplification, but again filesystems are complicated and we wantto focus on things that are relevant for shell scripting. If you're interested
 in how filesystems work on a lower level, be sure to pick up another book
 since it really is a very interesting subject!
