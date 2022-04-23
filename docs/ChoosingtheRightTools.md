@@ -4,10 +4,10 @@
     - [Atom installation and configuration](#atom-installation-and-configuration)
   - [Notepad++](#notepad)
 - [Using command-line editors](#using-command-line-editors)
-  - [Vim](#vim)
-    - [Vim summary](#vim-summary)
-    - [.vimrc](#vimrc)
-    - [Vim cheat sheet](#vim-cheat-sheet)
+  - [`Vim`](#vim)
+    - [`Vim` summary](#vim-summary)
+    - [.`Vim`rc](#vimrc)
+    - [`Vim` cheat sheet](#vim-cheat-sheet)
   - [nano](#nano)
 - [Combining graphical editors with command-line editors when writing shell scripts](#combining-graphical-editors-with-command-line-editors-when-writing-shell-scripts)
 - [Questions](#questions)
@@ -15,7 +15,7 @@
 
 ### Technical requirements
 You will need the virtual machine we created in the previous
-chapter when using Vim or nano. If you want to use Notepad++,
+chapter when using `Vim` or nano. If you want to use Notepad++,
 you will need a Windows host machine. For Atom, the host
 machine can run either Linux, macOS, or Windows.
 
@@ -69,12 +69,12 @@ for much easier scripting!). This functionality is provided
 through core packages, which work the same way as normal
 
 packages but are included from the start. For our purposes, the
-core package, language-shellscript, will help us in our shell
+core package, `language-shellscript`, will help us in our shell
 scripting endeavors.
 
 ##### Atom installation and configuration
 Let's go ahead and install Atom. As long as you're running Linux,
-macOS, or Windows, you can go to https://atom.io/ and grab the
+macOS, or Windows, you can go to `https://atom.io/` and grab the
 installer. Run the installer and, if necessary, follow along with
 the prompts until Atom is installed. Now, start Atom and you'll
 be greeted by the welcome screen, which at the time of writing
@@ -98,7 +98,7 @@ means that you can start typing and Atom will try to predict what
 you want, in the following manner:
 
 On the right-hand side, you can see we started typing the
-echo shell command, and after the first two letters, Atom
+`echo` shell command, and after the first two letters, Atom
 presented us with two options that contain those two letters.
 Once it makes a suggestion, we can press Enter and the
 command is inserted fully. While it will not save much time in
@@ -115,16 +115,16 @@ Finally, let's look at how Atom looks when you've got a Git
 project open and are working on files:
 
 When working in Atom, the screen will mostly look like this. On
-the left-hand side, you'll see the Tree View, which you can
-toggle on/off by pressing Ctrl + \. The Tree View contains all the
+the left-hand side, you'll see the `Tree View`, which you can
+toggle on/off by pressing Ctrl + \. The `Tree View` contains all the
 files in your current project (which is the directory you've
 opened). All these files can be opened by double-clicking them,
-which causes them to appear in the middle: the Editor View.
+which causes them to appear in the middle: the `Editor View`.
 This is where you'll spend most of your time, working on the
-shell scripts. The Editor View will always be visible, even if there
+shell scripts. The `Editor View` will always be visible, even if there
 are currently no files open.
 
-By default, there is one last view, the Git View, located on the
+By default, there is one last view, the `Git View`, located on the
 right-hand side. This view can be toggled by pressing
 Ctrl +Shift + 9. The code for this book is hosted on GitHub,
 which you will download (or, as Git calls it, clone) once, without
@@ -133,8 +133,8 @@ View is not needed in this book, but we mention it since you will
 probably use it for other projects.
 
 #### Notepad++
-Where Atom is closer to an integrated development
-environment (IDE) than a text editor, Notepad++ is pretty
+Where Atom is closer to an` integrated development
+environment (IDE)` than a text editor, Notepad++ is pretty
 much what the name implies: good old Notepad with some
 added features. Some of these added features include being able
 to have multiple files open at the same time, syntax highlighting,
@@ -150,14 +150,14 @@ environment, you would almost always create scripts in an
 already existing version-controlled repository, which is where
 the added features of Atom really shine.
 
-If you would like to check out Notepad++, grab it from https://note
-pad-plus-plus.org/download and run the installer (remember, only if
+If you would like to check out Notepad++, grab it from `https://note
+pad-plus-plus.org/download` and run the installer (remember, only if
 you're on Windows!). Keep the default options and run
 Notepad++ after the installation. You should be greeted by the
 following screen:
 
-As you can see, when you open a file ending in .sh, you will see
-syntax highlighting. This is because the .sh extension is reserved
+As you can see, when you open a file ending in `.sh`, you will see
+syntax highlighting. This is because the `.sh` extension is reserved
 for shell script files. This can help you immensely when writing
 scripts. The example of a missing quote messing up your script
 will become really apparent with color-based syntax
@@ -179,22 +179,22 @@ server installations will almost never have a GUI and you will
 have to rely on command-line text editors. While this might
 sound daunting, it's really not! To give you a small introduction
 to command-line editors, we'll go over two of the most popular
-applications that are present on most Linux distributions: Vim
-and GNU nano.
+applications that are present on most Linux distributions: `Vim`
+and `GNU nano`.
 
-#### Vim
+#### `Vim`
 The first command-line text editor we will discuss is perhaps the
-most popular for Linux: Vim. Vim is derived from the term Vi
-Improved, as it is an updated clone of the Unix editor Vi. It was
+most popular for Linux: `Vim`. `Vim` is derived from the term `Vi
+Improved`, as it is an updated clone of the Unix editor Vi. It was
 created and is still maintained by Bram Moolenaar, who first
-released Vim publicly in 1991. Vim (or, on very old systems, Vi)
+released `Vim` publicly in 1991. `Vim` (or, on very old systems, Vi)
 should be present on all Unix or Unix-like machines you will
 encounter.
 
-Vim is considered a hard-to-learn tool. This is mainly caused by
+`Vim` is considered a hard-to-learn tool. This is mainly caused by
 the fact it works very differently from text editors that most
 people are used to. However, once the initial learning curve is
-over, many agree that a lot of actions can be done in Vim much
+over, many agree that a lot of actions can be done in `Vim` much
 more quickly than in a normal text editor (such as Microsoft's
 Notepad++).
 
@@ -203,29 +203,29 @@ Let's jump in! Log in to your virtual machine:
 ```bash
 $ ssh chamra@192.168.163.131 -p 22
 ```
-Once logged in, open Vim to an empty file:
+Once logged in, open `Vim` to an empty file:
 ```bash
-chamara@ubuntu22:~$ vim
+chamara@ubuntu22:~$ `Vim`
 ```
 You should be greeted by something looking approximately like
 the following:
 
 ![image](./img/3.png)
-Vim starts a new process that uses your entire Terminal (don't
+`Vim` starts a new process that uses your entire Terminal (don't
 worry, everything will still be right where you left it once you exit
-Vim!). When you start up Vim, you will be placed in normal
-mode. Vim has a number of modes, of which normal and insert
-are the most interesting to explore. In normal mode, you can't
-just start typing like you would in Notepad or Word. Since Vim
+`Vim`!). When you start up `Vim`, you will be placed in normal
+mode. `Vim` has a number of modes, of which normal and `insert`
+are the most interesting to explore. In `normal mode`, you can't
+just start typing like you would in Notepad or Word. Since `Vim`
 was designed to be used without a mouse, it needed a way to
 manipulate text as well. Where some applications decided on
 using modifiers for this (holding the Shift key in Notepad for
-example), Vim decided on modes. Let's first enter insert mode so
+example), `Vim` decided on modes. Let's first enter insert mode so
 we can start to type some text. Press the I key, and your screen
 should switch to insert mode:
 
 ```bash
-chamara@ubuntu22:~$ vim test.txt
+chamara@ubuntu22:~$ `Vim` test.txt
 ```
 ![alt](img/4.png))
 We've taken the liberty of typing some text while in insert mode.
@@ -233,21 +233,21 @@ Be sure to do the same and when you're done, press Esc to go
 back to normal mode:
 
 If you compare the two screenshots, you should a big difference:
-in the lower-left corner, the text -- INSERT -- is gone! When you're
+in the lower-left corner, the text `-- INSERT --` is gone! When you're
 in a mode other than normal, that mode is clearly presented
 there. If you do not see anything, you can safely assume you're in
 normal mode. In normal mode, we can navigate using the arrow
 keys. We can also manipulate characters, words, and even
-(multiple) lines with a few key presses! For example, hit dd and
+(multiple) lines with a few key presses! For example, hit `dd` and
 notice that your whole line just got deleted. If you want to get it
-back, hit u for undo
+back, hit` u` for undo
 
-One challenge remains: exiting Vim. Normally, you might be
+One challenge remains: exiting `Vim`. Normally, you might be
 tempted to use the Esc button to exit a program. If you're a little
 familiar with Linux, you might even know that a nice Ctrl + C
 will probably exit most programs as well. However, neither will
-work for Vim: Esc will just land you in normal mode, while
-Ctrl + C will not do anything. To quit Vim, make sure you are in
+work for `Vim`: Esc will just land you in normal mode, while
+Ctrl + C will not do anything. To quit `Vim`, make sure you are in
 normal mode and enter the following:
 
 ```bash
@@ -261,61 +261,61 @@ you want to save and exit, use the following:
 ```bash
 :x filename.txt
 ```
-This saves your current document as filename.txt and returns you
-to your Terminal. Note that normally you'll start Vim on an
+This saves your current document as `filename.txt` and returns you
+to your Terminal. Note that normally you'll start `Vim` on an
 already existing file by using the following command:
 
 ```bash
-$ vim filename.txt
+$ `Vim` filename.txt
 ```
 In this case, you do not need to enter a filename when saving and
-exiting; using :x is enough in that case. :x is actually shorthand
-for :wq. :w is the write action, which you use to save a file, and :q is
+exiting; using `:x` is enough in that case. `:x` is actually shorthand
+for `:wq.` `:w` is the write action, which you use to save a file, and `:q` is
 used to quit. Combined, they are used to save and quit. If you
 want to save your file at any other time during editing, you can
-just use :w to accomplish this.
+just use `:w` to accomplish this.
 
-##### Vim summary
-Vim has many commands that power users appreciate. For now,
+##### `Vim` summary
+`Vim` has many commands that power users appreciate. For now,
 remember that there are two important modes, normal and
 insert. You can go from normal to insert by pressing I, and you
 can go back to normal mode by pressing Esc. When in insert
-mode, Vim behaves just like Notepad or Word, but in normal
+mode, `Vim` behaves just like Notepad or Word, but in normal
 mode you can perform easy text manipulation, for example
 deleting the whole line currently selected. If you want to exit
-Vim, go to normal mode and enter either :q! or :x, depending on
+`Vim`, go to normal mode and enter either `:q!` or `:x`, depending on
 whether you want to save the changes or not.
 
 `
-Don't be afraid to start using Vim. While it might seem daunting at first,
+Don't be afraid to start using `Vim`. While it might seem daunting at first,
 once you get the hang of it you can really perform file-related tasks on
 servers much more quickly. If you want to get a head start, take 30
-minutes of your time and work through vimtutor. This command-line
-tool will get you up to speed with the basic usage of Vim really quickly!
-To start, simply navigate to your virtual machine, type vimtutor, and press
+minutes of your time and work through `Vim`tutor. This command-line
+tool will get you up to speed with the basic usage of `Vim` really quickly!
+To start, simply navigate to your virtual machine, type `Vim`tutor, and press
 Enter.
 `
-##### .vimrc
+##### .`Vim`rc
 
-The .vimrc file can be used to set some persistent options for Vim.
-Using this file, you can customize your Vim experience. There
+The .`.vimrc`rc file can be used to set some persistent options for `Vim`.
+Using this file, you can customize your `Vim` experience. There
 are many possibilities for customization: popular examples
 include setting the color scheme, converting between tabs and
 spaces, and setting search options.
 
-To create a .vimrc file that will be used when starting Vim, do the
+To create a .`.vimrc` file that will be used when starting `Vim`, do the
 following:
 
 ```bash
 $ cd
-$ vim .vimrc
+$ `Vim` .`Vim`rc
 ```
 The first command places you in your home directory (don't worry,
 this will be explained in greater detail later in this book). The
-second starts a Vim editor for the .vimrc file. Don't forget the dot
+second starts a `Vim` editor for the .`.vimrc` file. Don't forget the dot
 in front, as this is how Linux deals with hidden files (again, more
 on this later on). We're using the following configuration in our
-.vimrc file:
+.`.vimrc` file:
 
 ```bash
 set expandtab
@@ -338,11 +338,11 @@ configuration:
  or more uppercase letters.
 - `set number`: shows line numbers.
 
-##### Vim cheat sheet
+##### `Vim` cheat sheet
 To get you started off with some great-to-know commands for
-Vim, we've incorporated a cheat sheet. After working through
-vimtutor, having this cheat sheet nearby almost guarantees you
-can properly use Vim!
+`Vim`, we've incorporated a cheat sheet. After working through
+`vimtutor`, having this cheat sheet nearby almost guarantees you
+can properly use `Vim`!
 
 Keystrokes are entered directly. Note that the keystrokes are case
 sensitive, so a is different from A. You can either hold Shift for
@@ -353,7 +353,7 @@ practical approach would be to use Shift:
 ![alt](./img/6.png)
 
 #### nano
-GNU nano, commonly referred to as just nano, is another
+`GNU nano`, commonly referred to as just nano, is another
 command-line editor that is present by default on most Linux
 installations. As the name might suggest, it is part of the GNU
 project, no different than many other parts that make up a Linux
@@ -362,8 +362,8 @@ Nano was first released in 1999, with the intention of replacing
 the Pico text editor, a simple text editor created for Unix
 systems.
 
-Nano is much more than a What You See Is What You
-Get (WYSIWYG) tool, definitely when compared to Vim.
+Nano is much more than a `What You See Is What You
+Get (WYSIWYG)` tool, definitely when compared to `Vim`.
 Similar to Notepad and Word, nano does not use different
 modes; it's always ready to start typing your documents or
 scripts.
@@ -380,7 +380,7 @@ the following:
 
 ![](./img/8.png)
 As you can see, the bottom of the screen is reserved for
-presenting what nano calls control keys. While it might not be
+presenting what nano calls `control keys`. While it might not be
 obvious at first, the ^ is shorthand for Ctrl. If you want to exit,
 you hold down Ctrl and press X:
 
@@ -404,14 +404,14 @@ total 8
 ```
 While nano has more advanced features, for basic usage we have
 discussed the most important features. While it's initially easier
-to use than Vim, it's also not as powerful. Simply said, nano is
-simple, Vim is powerful.
+to use than `Vim`, it's also not as powerful. Simply said, nano is
+simple, `Vim` is powerful.
 
 If you do not have any experience and/or preference, our
 recommendation would be to spend a little bit of time learning
-Vim and stick with it. After spending more time with Linux and
-Bash scripting, the advanced features of Vim become hard to live
-without. However, if you can't get used to Vim, don't be ashamed
+`Vim` and stick with it. After spending more time with Linux and
+Bash scripting, the advanced features of `Vim` become hard to live
+without. However, if you can't get used to `Vim`, don't be ashamed
 to use nano: it's a fine editor that will get most jobs done without
 too much hassle!.
 
@@ -448,12 +448,12 @@ to move away from your GUI: the script has to be tested on the
 system it's been designed for.
 
 Phase 4 begins. You copy and paste the script to the server, using
-either Vim or nano. Once the script is on the server, you run it.
+either `Vim` or nano. Once the script is on the server, you run it.
 Most of the time, it will not actually do everything you expected
 it to do. Tiny mistakes are easy to make and easy to fix, but it
 would be a small hassle to go back to the GUI editor, change it,
 save it, transfer it to the server, and run it again! Luckily, we can
-use either Vim or nano to make minor changes to fix the script
+use either `Vim` or nano to make minor changes to fix the script
 right there on the server and try again. A missing ; or " will make
 a shell script unusable, but it's fixed quickly (although errors like
 that are often highlighted in the GUI editors, so those are
@@ -470,7 +470,7 @@ and you're finished!
 Summary
 In this chapter, we discussed four text editing tools, divided into
 two types: GUI-based editors (Atom and Notepad++) and
-command-line editors (Vim and GNU nano), before showing
+command-line editors (`Vim` and `GNU nano`), before showing
 how to use these tools together.
 
 Atom is a powerful text editor that can be configured exactly how
@@ -481,12 +481,12 @@ powerful as Atom, it is also suitable for our purposes, as it is
 basically an enhanced Notepad with all the important features
 for shell scripting.
 
-Vim and nano are the two most popular Linux command-line
-text editors. We have learned that while Vim is very powerful, it
+`Vim` and nano are the two most popular Linux command-line
+text editors. We have learned that while `Vim` is very powerful, it
 is also harder to learn than nano. However, learning how to
-properly use Vim will speed up many things you do on a Linux
+properly use `Vim` will speed up many things you do on a Linux
 system and is a very valuable skill to have. For a great hands-on
-introduction to Vim, go through the vimtutor. Nano is much
+introduction to `Vim`, go through the `Vim`tutor. Nano is much
 easier to use, as it more closely resembles the WYSIWYG editing
 style also found in Microsoft Word and Notepad.
 
@@ -494,8 +494,8 @@ We ended the chapter with an example of a shell scripting
 journey. We gave a brief overview of how to use GUI-based
 editors in combination with command-line editors.
 
-The following commands were introduced in this chapter: vim,
-nano, and ls.
+The following commands were introduced in this chapter: `Vim`,
+`nano`, and `ls`.
 
 ### Questions
 1. Why is syntax highlighting an important feature for text
@@ -504,10 +504,10 @@ editors?
 Atom?
 3. What are the benefits of autocomplete when writing shell
 scripts?
-4. How could we describe the difference between Vim and
-GNU nano?
-5. Which are the two most interesting modes in Vim?
-6. What is the .vimrc file?
+4. How could we describe the difference between `Vim` and
+`GNU nano`?
+5. Which are the two most interesting modes in `Vim`?
+6. What is the .`Vim`rc file?
 7. What do we mean when we call nano a WYSIWYG editor?
 8. Why would we want to combine GUI editors with
 command-line editors?
@@ -515,5 +515,5 @@ command-line editors?
 ### Further reading
 The following resource might be interesting if you'd like to go
 - deeper into the subjects of this chapter:
-Hacking Vim 7.2 by Kim Schulz, Packt Publishing: https://
-www.packtpub.com/application-development/hacking-vim-72
+Hacking `Vim` 7.2 by Kim Schulz, Packt Publishing: https://
+www.packtpub.com/application-development/hacking-`Vim`-72
