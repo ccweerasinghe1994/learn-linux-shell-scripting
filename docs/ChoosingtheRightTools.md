@@ -309,7 +309,7 @@ following:
 
 ```bash
 $ cd
-$ `Vim` .`Vim`rc
+$ vim .vimrc
 ```
 The first command places you in your home directory (don't worry,
 this will be explained in greater detail later in this book). The
