@@ -46,25 +46,26 @@ filesystems. We find it easiest to grasp by ordering the
 filesystems in families, just as with Linux distributions: there are
 Linux filesystems, Windows filesystems, macOS filesystems, and
 many others. The Windows filesystem family spans from the
-earliest filesystem of FAT up until the newest ReFS, with the
-most widely used currently being NTFS.
+earliest filesystem of `FAT` up until the newest `ReFS`, with the
+most widely used currently being `NTFS`.
 
 At the time of writing, the most important filesystems in the
 Linux family are the following implementations:
 
-- ext4
-- XFS
-- Btrfs
+- `ext4`
+- `XFS`
+- `Btrfs`
 
 The most commonly used Linux filesystem implementation is
-currently ext4. It is the fourth iteration in the extended file
-system (ext) series of Linux filesystems. It was released in
-2008 and is considered very stable, but it is not state-of-the-art;reliability is the most important consideration.
+currently `ext4`. It is the fourth iteration in the `extended file
+system (ext)` series of Linux filesystems. It was released in
+2008 and is considered very stable, but it is not state-of-the-art;
+reliability is the most important consideration.
 
-XFS is most famously used in Red Hat distributions (Red Hat
+`XFS` is most famously used in `Red Hat distributions` (Red Hat
 Enterprise Linux, CentOS, and Fedora). It contains some
-features that are more advanced than ext4, such as parallel I/O,
-larger file size support, and better handling of large files.
+features that are more advanced than ext4, such as `parallel I/O`,
+`larger file size support`, and better handling of large files.
 
 Finally, there is Btrfs. This filesystem implementation was
 initially designed at Oracle and is considered stable as of 2014.
