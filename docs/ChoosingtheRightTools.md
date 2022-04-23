@@ -6,7 +6,7 @@
 - [Using command-line editors](#using-command-line-editors)
   - [`Vim`](#vim)
     - [`Vim` summary](#vim-summary)
-    - [.`Vim`rc](#vimrc)
+    - [.vimrc](#vimrc)
     - [`Vim` cheat sheet](#vim-cheat-sheet)
   - [nano](#nano)
 - [Combining graphical editors with command-line editors when writing shell scripts](#combining-graphical-editors-with-command-line-editors-when-writing-shell-scripts)
@@ -267,7 +267,7 @@ to your Terminal. Note that normally you'll start `Vim` on an
 already existing file by using the following command:
 
 ```bash
-$ `Vim` filename.txt
+$ vim filename.txt
 ```
 In this case, you do not need to enter a filename when saving and
 exiting; using `:x` is enough in that case. `:x` is actually shorthand
@@ -296,10 +296,10 @@ tool will get you up to speed with the basic usage of `Vim` really quickly!
 To start, simply navigate to your virtual machine, type `Vim`tutor, and press
 Enter.
 `
-##### .`Vim`rc
+##### .vimrc
 
 The .`.vimrc`rc file can be used to set some persistent options for `Vim`.
-Using this file, you can customize your `Vim` experience. There
+Using th  is file, you can customize your `Vim` experience. There
 are many possibilities for customization: popular examples
 include setting the color scheme, converting between tabs and
 spaces, and setting search options.
