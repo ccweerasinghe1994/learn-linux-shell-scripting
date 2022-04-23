@@ -10,6 +10,7 @@
     - [`Vim` cheat sheet](#vim-cheat-sheet)
   - [nano](#nano)
 - [Combining graphical editors with command-line editors when writing shell scripts](#combining-graphical-editors-with-command-line-editors-when-writing-shell-scripts)
+- [Summary](#summary)
 - [Questions](#questions)
 - [Further reading](#further-reading)
 
@@ -470,7 +471,7 @@ see whether you have applied all the changes you made on the
 server to your GUI session as well. Once that is done, commit it,
 and you're finished!
 
-Summary
+### Summary
 In this chapter, we discussed four text editing tools, divided into
 two types: GUI-based editors (Atom and Notepad++) and
 command-line editors (`Vim` and `GNU nano`), before showing
