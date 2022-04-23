@@ -260,15 +260,15 @@ an option on the ls command:
 
 ![](./img/15.png)
 
-The option -l (hyphen lowercase l, as in long) to ls gives the long
-listing format. Among other things, this prints the
-permissions, the owner of the file/directory, the type of file, and
-its size. Remember, permissions and ownership are discussed in
+The option `-l` (hyphen lowercase l, as in long) to ls gives the `long
+listing format`. Among other things, this prints the
+`permissions`, the `owner of the file/directory`, the `type of file`, and
+its `size`. Remember, permissions and ownership are discussed in
 the next chapter, so no need to worry about this for now. The
 most important thing to take away from this is that each
-file/directory is printed on its own line, where the first character
-of that line denotes the type of file: d for directory, - for regular
-file, and l for symlinks (which are shortcuts under Linux).
+`file/directory` is printed on its own line, where the first character
+of that line denotes the type of file: `d` for `directory`, `-` for `regular`
+`file`, and `l` for `symlinks` (which are `shortcuts` under `Linux`).
 
 Let's navigate deeper into the tree structure, back toward our
 home directory. At this point, you have two options. You can use a
@@ -282,10 +282,10 @@ reader@ubuntu:/home$
 ```
 
 The preceding is an example of changing directories into a
-relative directory. We were positioned in the root directory, /,
-and we navigated to home from there, effectively ending up in
-/home. We could have navigated there from anywhere by using the
-fully qualified path:
+`relative` directory. We were positioned in the `root` directory, `/`,
+and we navigated to `home` from there, effectively ending up in
+`/home`. We could have navigated there `from anywhere` by using the
+`fully qualified path`:
 
 ```bash
 reader@ubuntu:/$ cd /home
@@ -302,13 +302,13 @@ reader@ubuntu:/home$ cd /reader
 -bash: cd: /reader: No such file or directory
 ```
 
-We listed the contents of the /home directory with ls. As expected,
+We listed the contents of the `/home` directory with ls. As expected,
 we saw (at least) the current user's home directory, reader.
-However, when we tried to navigate to it using cd /reader, we got
+However, when we tried to navigate to it using cd `/reader`, we got
 the infamous error No such file or directory. This is not surprising
-though: there isn't actually a directory /reader. The directory we're
-looking for is /home/reader, which would be reached fully qualified
-with the command cd /home/reader:
+though: there isn't actually a directory `/reader`. The directory we're
+looking for is `/home/reader`, which would be reached fully qualified
+with the command `cd /home/reader`:
 
 ```bash
 reader@ubuntu:/home$ cd home
@@ -318,9 +318,9 @@ reader@ubuntu:/home$
 
 The same error is presented if we try to use an incorrect relative
 path. In the preceding example, we are currently located in the
-/home directory and we use the cd home command. Effectively, this
-would put us in /home/home, which, as we saw when we used ls in
-the /home directory, does not exist!
+`/home` directory and we use the cd home command. Effectively, this
+would put us in `/home/home`, which, as we saw when we used ls in
+the `/home` directory, does not exist!
 
 `
 The safest way to navigate around Linux is fully qualified: as long as
@@ -332,12 +332,12 @@ switch to relative once they're comfortable with the cd, ls, and pwd
 commands.
 `
 
-Even though fully qualified is safer, it's much less efficient then
-relative. You saw how we can move deeper into the branches of
+Even though `fully qualified` is `safer`, it's much `less efficient` then
+`relative`. You saw how we can move deeper into the branches of
 the tree structure, but what if you had to go down a level, back
 toward the root? Luckily for us, that does not force us to use fully
-qualified paths. We can use the .. notation, which means as
-much as go up a level toward /:
+qualified paths. We can use the `..` notation, which means as
+much as `go up a level toward /:`
 
 ```bash
 reader@ubuntu:/home$ cd ..
@@ -351,6 +351,7 @@ moving up. While we think that this doesn't really match with the picture
 of a tree (where the root is actually the lowest point), please remember
 this convention!
 `
+
 Using cd .. to move up lands us back at the root of the filesystem.
 At this point, you might think If I do this again while I'm on the
 highest level of the filesystem, what would happen?. Give it a
@@ -368,24 +369,25 @@ at it, stay) on the root of the filesystem.
 `A source of confusion among new users of Linux is often the term root. It
 can stand for any of three things:`
 
-1. The lowest point in the filesystem, at /
-2. The default superuser, named just root
-3. The default superuser's home directory, at /root/
+1. The `lowest` point in the filesystem, at` /`
+2. The `default superuser`, named just `root`
+3. The `default superuser's home` `directory`, at `/root/`
 
 `Often, it is left to the reader to use context to determine which of the three
 is meant. When talking in the context of filesystems, it will probably be:
 `
-1. If it seems to be referring to a user, you can expect it to mean the
-root user
-2. Only when talking about the root user's home directory or
-/root/ should you think of3. Most often, you will encounter root to mean either 1 or 2!
+1. If it seems to be `referring` to a `user`, you can expect it to mean the
+`root user`
+2. Only when talking about the `root` `user's` `home directory` or
+`/root/` should you think of
+3. Most often, you will encounter root to mean either 1 or 2!
 
 #### Overview of top-level directories
-Now that we've got the basics of moving around using cd and
-listing directory contents using ls under control, let's start
+Now that we've got the basics of moving around using `cd` and
+listing directory contents using `ls` under control, let's start
 exploring other parts of the filesystem. Let's begin with an
 overview of every directory directly under the root filesystem, as
-specified by the FHS:
+specified by the `FHS` :
 
 ![alt](./img/11.png)
 ![alt](./img/12.png)
@@ -399,31 +401,18 @@ scripting. These are /bin/, /sbin/, /usr/, /etc/, /opt/, /tmp/, and /var/.
 ##### What about multiple partitions?
 But first, we'd like to briefly address something you might have
 found confusing, especially if you're coming from a Windows
-background where you're used to multiple disks/partitions in the
-form of C:\, D:\, E:\, and so on. With the preceding directory
-structure, and the information that the highest point in the
-filesystem is at /, how does Linux deal with multiple
-disks/partitions?
+background where you're used to `multiple disks/partitions` in the
+form of `C:\, D:\, E:\,` and so on. With the preceding directory
+structure, and the information that the `highest` point in the
+filesystem is at` /`, how does `Linux deal with multiple
+disks/partitions?`
 
 The answer is actually pretty simple. Linux mounts filesystems
 somewhere within the tree structure. The first mount is found on
 the primary partition we have already covered: it is mounted on
 /! Let's see how this looks while we check out a new df tool:
 
-```bash
-reader@ubuntu:~$ df -hT
-Filesystem Type Size Used Avail Use% Mounted on
-udev devtmpfs 464M 0 464M 0% /dev
-tmpfs tmpfs 99M 920K 98M 1% /run
-/dev/sda2 ext4 9.8G 4.4G 5.0G 47% /
-tmpfs tmpfs 493M 0 493M 0% /dev/shm
-tmpfs tmpfs 5.0M 0 5.0M 0% /run/lock
-tmpfs tmpfs 493M 0 493M 0% /sys/fs/cgroup
-/dev/loop0 squashfs 87M 87M 0 100% /snap/core/4917
-/dev/loop1 squashfs 87M 87M 0 100% /snap/core/4486
-/dev/loop2 squashfs 87M 87M 0 100% /snap/core/4830
-tmpfs tmpfs 99M 0 99M 0% /run/user/1000
-```
+![](img/16.png)
 
 While this is a lot of output by df (which reports filesystem disk
 space usage), the most interesting was highlighted previously:
