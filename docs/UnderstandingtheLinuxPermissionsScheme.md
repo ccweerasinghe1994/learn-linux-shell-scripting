@@ -7,6 +7,14 @@
   - [sudo, chown, and chgrp](#sudo-chown-and-chgrp)
     - [sudo](#sudo)
     - [chown, chgrp](#chown-chgrp)
+- [Working with multiple users](#working-with-multiple-users)
+- [Advanced permissions](#advanced-permissions)
+  - [File attributes](#file-attributes)
+  - [Special file permissions](#special-file-permissions)
+  - [Access Control Lists (ACLs)](#access-control-lists-acls)
+- [Summary](#summary)
+- [Questions](#questions)
+- [Further reading](#further-reading)
 ### Technical requirements
 We will explore the Linux permissions scheme using the virtual
 machine we created in Chapter 2, Setting Up Your Local
@@ -693,3 +701,430 @@ file. For users, the same information can be found in `/etc/passwd`.
 ➜  ~ less /etc/group
 ➜  ~ less /etc/passwd
 ```
+### Working with multiple users
+As we've stated before, `Linux` is inherently a `multi-user
+system`, especially in the `context` of a `Linux server`, where these
+systems are often administered not by a single user, but often a
+(large) team. `Each user` on a server has it own set of `permissions`.
+Imagine, for example, a server where three departments need to
+be `development`, `operations`, and `security`. Development and
+operations both have their own stuff there, but also need to share
+some other things. The security department needs to be able to
+view everything to ensure proper compliance and adherence to
+security guidelines. How could we arrange such a structure?
+Let's make it happen!
+
+First, we need to create some users. For each department, we will
+create a single `user`, but since we're going to ensure permissions
+on the `group` level, this will work just as well for 5, 10, or 100
+users in each department. We can create users with the `useradd`
+command. In its basic form, we can just use `useradd <username>`, and
+Linux will handle the rest via default values. Obviously, as with
+almost everything in Linux, this is highly customizable; check the
+man page (man useradd) for more information.
+
+As was the case with `chown` and `chgrp`, `useradd (and later usermod) is a
+privileged command`, which we will execute with sudo:
+
+```bash
+➜  ~ useradd dev-user-1
+useradd: Permission denied.
+useradd: cannot lock /etc/passwd; try again later.
+➜  ~ sudo useradd dev-user-1
+[sudo] password for chamara: 
+➜  ~ sudo useradd ops-user-1
+➜  ~ sudo useradd sec-user-1
+➜  ~ id dev-user-1 
+uid=1001(dev-user-1) gid=1001(dev-user-1) groups=1001(dev-user-1)
+➜  ~ id ops-user-1 
+uid=1002(ops-user-1) gid=1002(ops-user-1) groups=1002(ops-user-1)
+➜  ~ id sec-user-1 
+uid=1003(sec-user-1) gid=1003(sec-user-1) groups=1003(sec-user-1)
+➜  ~
+```
+
+As a last reminder, we've showed you what happens when you
+forget `sudo`. While the error message is technically fully correct
+(you need root permissions to edit /etc/passwd, where user
+information is stored), it might not be fully obvious why the
+command is failing, especially because of the misleading try again
+later! error.
+
+With sudo, however, we are able to add three users: `dev-user1`, `ops-user-1`, and `sec-user-1`. When we inspect these users in order, we can
+see that their `uid` goes up by one each time. We can also see that a
+group with the same name as the user is created, and that that is
+the sole group of which the users are a member. Groups also
+have their `gid`, which is incremented by one for each next user.
+So, now we have the users in place, but we need shared groups.
+For this, we have a similar command (both in name and
+operation): `groupadd`. Check the man page for groupadd and add three
+groups corresponding to our departments:
+
+```bash
+➜  ~ sudo groupadd development
+➜  ~ sudo groupadd operations
+➜  ~ sudo groupadd security
+➜  ~ cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,chamara
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:chamara
+floppy:x:25:
+tape:x:26:
+sudo:x:27:chamara
+audio:x:29:
+dip:x:30:chamara
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:chamara
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+messagebus:x:104:
+systemd-timesync:x:105:
+input:x:106:
+sgx:x:107:
+kvm:x:108:
+render:x:109:
+lxd:x:110:chamara
+_ssh:x:111:
+crontab:x:112:
+syslog:x:113:
+uuidd:x:114:
+tcpdump:x:115:
+tss:x:116:
+landscape:x:117:
+chamara:x:1000:
+dev-user-1:x:1001:
+ops-user-1:x:1002:
+sec-user-1:x:1003:
+development:x:1004:
+operations:x:1005:
+security:x:1006:
+➜  ~
+```
+To see which `groups` are already available, you can check out the
+`/etc/group` file (with, for example, `less` or `cat`). Once you're satisfied,
+we now have the users and `groups` in place. But how do we make
+the users `members` of the `groups`? Enter `usermod` (which stands for user modify). The syntax to set a user's primary group is as
+follows: `usermod -g <groupname> <username>:`
+
+```bash
+➜  ~ sudo usermod -g development dev-user-1 
+➜  ~ sudo usermod -g operations ops-user-1 
+➜  ~ sudo usermod -g security sec-user-1  
+➜  ~ id dev-user-1 
+uid=1001(dev-user-1) gid=1004(development) groups=1004(development)
+➜  ~ id sec-user-1 
+uid=1003(sec-user-1) gid=1006(security) groups=1006(security)
+➜  ~ id ops-user-1 
+uid=1002(ops-user-1) gid=1005(operations) groups=1005(operations)
+➜  ~ 
+```
+
+What we have accomplished now is closer to our goal, but we're
+not there yet. So far, we have only ensured that multiple
+developers can share files by all being in the development `group`.
+But how about the shared folder between development and
+operations? And how can security monitor everything? Let's
+create some `directories` (using `mkdir`, which stands for make
+directory) with the correct groups and see how far we can get:
+
+```bash
+➜  ~ sudo mkdir /data
+➜  ~ cd /data
+➜  /data ls
+➜  /data sudo mkdir dev-files
+➜  /data sudo mkdir ops-flies
+➜  /data sudo mkdir devops files
+➜  /data ls -l
+total 16
+drwxr-xr-x 2 root root 4096 Apr 24 06:58 dev-files
+drwxr-xr-x 2 root root 4096 Apr 24 06:59 devops
+drwxr-xr-x 2 root root 4096 Apr 24 06:59 files
+drwxr-xr-x 2 root root 4096 Apr 24 06:58 ops-flies
+➜  /data sudo chgrp development dev-files 
+➜  /data sudo chgrp operations ops-flies 
+➜  /data sudo chmod 0770 dev-files 
+➜  /data sudo chmod 0770 ops-flies 
+➜  /data ls -l
+total 16
+drwxrwx--- 2 root development 4096 Apr 24 06:58 dev-files
+drwxr-xr-x 2 root root        4096 Apr 24 06:59 devops
+drwxr-xr-x 2 root root        4096 Apr 24 06:59 files
+drwxrwx--- 2 root operations  4096 Apr 24 06:58 ops-flies
+➜  /data 
+```
+
+We now have the following structure: a `/data/` top level directory,
+which contains the directories `dev-files` and `ops-files`, which are
+owned by the `development` and `operations` groups, respectively. Now,
+let's fulfill the requirement that `security` can go into both
+directories and manage the files! Apart from using `usermod` to
+change the `main groups`, we can also append users to extra
+groups. In this case, the syntax is `usermod -a -G <groupnames> <username>`.
+Let's add sec-user1 to the development and operations groups:
+```bash
+➜  /data id sec-user-1 
+uid=1003(sec-user-1) gid=1006(security) groups=1006(security)
+➜  /data sudo usermod -a -G development,operations sec-user-1 
+➜  /data id sec-user-1 
+uid=1003(sec-user-1) gid=1006(security) groups=1006(security),1004(development),1005(operations)
+➜  /data 
+```
+The `user` from the `security` department is now a member of all
+new groups: `security`, `development`, and `operations`. Since both
+`/data/dev-files/` and `/data/ops-files/` do not have permissions for
+others, our current user should not be able to enter either,
+but `sec-user1` should be. Let's see if this is correct:
+
+
+```bash
+➜  /data sudo su - sec-user-1 
+su: warning: cannot change directory to /home/sec-user-1: No such file or directory
+$ ls
+dev-files  devops  files  ops-flies
+$ cd /data
+$ 
+$ ls
+dev-files  devops  files  ops-flies
+$ ls -l
+total 16
+drwxrwx--- 2 root development 4096 Apr 24 06:58 dev-files
+drwxr-xr-x 2 root root        4096 Apr 24 06:59 devops
+drwxr-xr-x 2 root root        4096 Apr 24 06:59 files
+drwxrwx--- 2 root operations  4096 Apr 24 06:58 ops-flies
+$ cd dev-files
+$ pwd
+/data/dev-files
+$ touch sequrity-file
+$ ls -l
+total 0
+-rw-r--r-- 1 sec-user-1 security 0 Apr 24 07:17 sequrity-file
+$ exit
+➜  /data
+```
+If you followed along with this example, you should see that we
+introduced a new command: `su`. Short for `switch user`, it allows
+us to, well, switch between users. If you prefix it with `sudo`, you
+can switch to a user without needing the `password` for that `user`,
+as long as you have those privileges. Otherwise, you will have to
+enter the `password` (which is hard in this case, since we haven't
+set a `password` for the user). As you might have noticed, the shell
+is different for the new user. That's because we haven't loaded
+any configuration (which is automatically done for the default
+user). Don't worry about that, though—it's still a fully
+functioning shell! Our test succeeded: we were able to move into
+the dev-files directory, even though we are not a developer. We
+were even able to create a file. If you want, verify that the same is
+possible for the ops-files directory.
+
+Finally, let's create a `new group`, `devops`, which we will use to share
+files between `developers` and `operations`. After creating the
+group, we will add both `dev-user1` and `ops-user1` to this group, in the
+same way we added `sec-user1` to the `development` and `operations` groups:
+
+```bash
+➜  ~ sudo groupadd devops
+➜  ~ sudo usermod -a -G devops dev-user-1 
+➜  ~ sudo usermod -a -G devops ops-user-1 
+➜  ~ id dev-user-1 
+uid=1001(dev-user-1) gid=1004(development) groups=1004(development),1007(devops)
+➜  ~ id ops-user-1 
+uid=1002(ops-user-1) gid=1005(operations) groups=1005(operations),1007(devops)
+➜  ~ cd /data
+➜  /data ls -l
+total 16
+drwxrwx--- 2 root development 4096 Apr 24 07:17 dev-files
+drwxr-xr-x 2 root root        4096 Apr 24 06:59 devops
+drwxr-xr-x 2 root root        4096 Apr 24 06:59 files
+drwxrwx--- 2 root operations  4096 Apr 24 06:58 ops-flies
+➜  /data sudo chown root:devops devops 
+➜  /data ls -l
+total 16
+drwxrwx--- 2 root development 4096 Apr 24 07:17 dev-files
+drwxr-xr-x 2 root devops      4096 Apr 24 06:59 devops
+drwxr-xr-x 2 root root        4096 Apr 24 06:59 files
+drwxrwx--- 2 root operations  4096 Apr 24 06:58 ops-flies
+➜  /data
+```
+We now have a shared directory, `/data/devops-files/`, where both `dev-user-1` and `ops-user1` can enter and `create files`.
+As an exercise, do any of the following:
+
+as a dev user
+
+```bash
+➜  /data sudo su - dev-user-1 
+su: warning: cannot change directory to /home/dev-user-1: No such file or directory
+$ id
+uid=1001(dev-user-1) gid=1004(development) groups=1004(development),1007(devops)
+$ pwd
+/data
+$ ls 
+dev-files  devops  files  ops-flies
+$ cd devops
+$ ls -l
+total 0
+-rw-r--r-- 1 dev-user-1 development 0 Apr 24 07:40 dev-created-file
+$
+```
+as a ops user
+```bash
+➜  /data sudo su - ops-user-1 
+su: warning: cannot change directory to /home/ops-user-1: No such file or directory
+$ uid
+-sh: 1: uid: not found
+$ id
+uid=1002(ops-user-1) gid=1005(operations) groups=1005(operations),1007(devops)
+$ ls
+dev-files  devops  files  ops-flies
+$ cd devops
+$ ls -l
+total 0
+-rw-r--r-- 1 dev-user-1 development 0 Apr 24 07:40 dev-created-file
+$ exit
+```
+1.  Add sec-user1 to the devops group, so that it can also audit
+the shared files
+2. Verify that both dev-user1 and ops-user1 can write files in the
+shared directories
+3. Understand why dev-user1 and ops-user1 can only read each
+other's files in the devops directory, but cannot edit them
+(hint: the next section of this chapter, Advanced
+permissions, will tell you how to solve this with `SGID`)
+
+### Advanced permissions
+This covers the basic permissions for Linux. There are, however,
+some advanced topics that we'd like to point out, but we will not
+be discussing them at length. For more information on these
+topics, check the Further reading section at the end of this
+chapter. We have included a reference for `file attributes`, `special
+file permissions`, and `access control lists`.
+
+#### File attributes
+`Files` can also have `attributes` that are expressed in another way
+than the `permissions` we have seen so far. An example of this is
+making a file `immutable` `(a fancy word, which means it cannot be
+changed)`. An `immutable` file still has normal ownership and
+group and RWX permissions, but it will `not` allow the `user` to
+`change` it, even if it contains the writable permission. Another
+characteristic of this is that the file `cannot` be `renamed`.
+Other file attributes include `undeletable`, `append only`, and
+`compressed`. For more information on file attributes, check the
+man pages for the `lsattr` and `chattr` commands (man lsattr and man
+chattr).
+
+#### Special file permissions
+As you might have noticed in the part about `octal` notation, we
+always start the notation with a `zero` `(0775, 0640, and so on)`.
+Why do we include the zero if we do not use it? That position is
+reserved for` special file permissions`: `SUID`, `SGID`, and the` sticky
+bit`. They have a similar `octal` notation (where `SUID is 4, SGID is
+2, and the sticky bit is 1`) and are used in the following manner:
+
+![](img/20.png)
+
+#### Access Control Lists (ACLs)
+`ACLs` are a way to increase the flexibility of the `UGO/RWX`
+system. Using `setfacl` (`set file acl`) and `getfacl` (`get file acl`), you
+can set `additional` `permissions` for `files` and `directories`. So, for
+example, using `ACLs`, you could say that, while the /root/
+directory is normally only accessible by the root user, it could also
+be read by the reader user. The other way to accomplish this,
+which is by adding the reader user to the root group, also gives the
+reader user many other privileges on the system (anything that
+has permissions on the root group has then been granted to the
+reader user!). `While ACLs are not often used in practice in our
+experience, for edge cases they can be the difference between a
+complex solution and a simple one.`
+
+### Summary
+In this chapter, we have looked at the Linux permissions scheme.
+We have learned that there are two main axes on which
+permissions are arranged: file permissions and file ownership.
+For file permissions, each file has an allowance (or disallowance)
+on read, write, and execute permissions. How these permissions
+work differs for files and directories. Permissions are applied by
+using ownership: a file is always owned by a user and a group.
+Besides the user and group, there are also file permissions
+present for everyone else, called the others ownership. If the user
+is either the owner or a member of the file's group, those
+permissions are available to the user. Otherwise, there need to be
+permissions for others to allow interaction with the file.
+
+Next, we learned how to manipulate file permissions and
+ownership. By using chmod and umask, we were able to get the file
+permissions in the way we needed. Using sudo, chown, and chgrp, we
+manipulated the owner and group of a file. A warning was given
+about the usage of sudo and the root user, since both can render a
+Linux system inoperable with very little effort.
+
+We continued with an example of working with multiple users.
+We added three additional users to the system using useradd, and
+gave them the correct groups with usermod. We saw how those
+users can be members of the same groups and, in that way, share
+access to files.
+
+Finally, we touched on some basics of advanced permissions
+under Linux. The Further reading section contains more
+information for those subjects.
+
+The following commands were introduced in this chapter: `id,
+touch, chmod, umask, chown, chgrp, sudo, useradd, groupadd, usermod, mkdir, and su`.Questions
+1. Which three p
+
+### Questions
+1. Which three permissions are used for Linux files?
+2. Which three types of ownership are defined for Linux
+files?
+3. Which command is used to change the permissions on a
+file?
+4. What mechanism controls the default permissions for
+newly created files?
+5. How is the following symbolic permission described in
+octal: rwxrw-r--?
+6. How is the following octal permission described
+symbolically: 0644?
+7. Which command allows us to gain superuser privileges?
+8. Which commands can we use to change ownership for a
+file?
+9. How can we arrange for multiple users to share access to
+files?
+10. Which types of advanced permissions does Linux have?
+
+
+### Further reading
+The following resources might be interesting if you'd like to go
+deeper into the subjects of this chapter:
+- Fundamentals of Linux by Oliver Pelz, Packt: https://www.packtpub.com/networking-and-servers/fundamentals-linux
+- File attributes: https://linoxide.com/how-tos/howto-show-file-attributes-in-linux/
+- Special file permissions: https://thegeeksalive.com/linux-special-permissions/
+- Access Control Lists: https://www.tecmint.com/secure-files-using-acls-in-linux/
+
