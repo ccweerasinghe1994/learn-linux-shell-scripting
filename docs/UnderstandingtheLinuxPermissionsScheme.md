@@ -387,9 +387,309 @@ As you can see from the `chmod u+rwx,g+rx,o+r` testfile command,
 things have gotten a bit complicated. Using `octal` notation,
 however, the command is much `simpler`:
 
+```bash
+➜  ~ chmod 0000 test.txt 
+➜  ~ ls -l
+total 8
+-rw-rw-r-- 1 chamara chamara 29 Apr 24 02:07 nano-test.txt
+---------- 1 chamara chamara 81 Apr 23 01:55 test.txt
+➜  ~ chmod 0754 test.txt
+➜  ~ ls -l              
+total 8
+-rw-rw-r-- 1 chamara chamara 29 Apr 24 02:07 nano-test.txt
+-rwxr-xr-- 1 chamara chamara 81 Apr 23 01:55 test.txt
+➜  ~ 
+```
+Basically, the difference is mainly using `imperative` notation
+`(add or remove permissions)` versus `declarative` notation `(set it
+to these values)`. In our experience, `declarative is almost always
+the better/safer option.` With `imperative, we need to first check
+the current permissions and mutate them; with declarative`, we can just specify in a single command exactly what we want.
+
+*It might be obvious by now, but we `prefer` to use the `octal` notation.
+Besides the benefits from shorter, simpler commands that are handled
+`declaratively`, another benefit is that most examples you will find online
+use the `octal` notation as well. To fully understand these examples, you
+will need to at least understand `octals`. And, if you need to understand
+them anyway, nothing beats using them in your day to day life!*.
+
+Earlier, when we used the `touch` command, we ended up with a file
+that could be `read` and `written` to by both the `user and group`, and
+was `readable` to others. These seem to be default permissions,
+but where do they come from? And how can we manipulate
+them? Let's meet `umask`:
+
+```bash
+➜  ~ umask
+002
+➜  ~ 
+```
+
+The `umask session` is used to determine the file permissions for
+`newly created files and directories`. For files, the following is
+done: take the `maximum octal` value for files, `0666`, and `subtract`
+the `umask (in this case, 0002)`, which gives us `0664`. This would mean
+that newly created files are `-rw-rwr--`, which is exactly what we saw
+for our `testfile`. Why do we take `0666` and not `0777`, `you might ask?`
+This is a `protection that Linux provides`; if we were to use `0777`,
+most files would be created as `executable`. `Executable files can be
+dangerous`, and the design decision was made that files should
+only be executable when explicitly set that way. So, with the
+current implementation, there is no such thing as `accidentally
+creating an executable file`. `For directories, the normal octal
+value of 0777 is used`, which means that `directories` are created
+with `0775, -rwxrwxr-x` permissions. We can check this out by creating
+a new directory with the `mkdir` command:
 
 
+```bash
+➜  ~ mkdir testdir
+➜  ~ ls -l
+total 12
+-rw-rw-r-- 1 chamara chamara   29 Apr 24 02:07 nano-test.txt
+drwxrwxr-x 2 chamara chamara 4096 Apr 24 04:24 testdir
+-rwxr-xr-- 1 chamara chamara   81 Apr 23 01:55 test.txt
+```
 
+Because the execute permission on a directory is much less
+dangerous `(remember, it is used to determine if you can move
+into the directory)`, this implementation differs from files.
+
+We have one last trick we'd like to showcase with regards to `umask`.
+In specific cases, we'd like to determine default values for files
+and directories ourselves. We can also do this using the umask
+command:
+
+```bash 
+➜  ~ umask
+002
+➜  ~ umask 0007
+➜  ~ umask
+007
+➜  ~ touch umaskfile
+➜  ~ mkdir umaskdir
+➜  ~ ls -l
+total 16
+-rw-rw-r-- 1 chamara chamara   29 Apr 24 02:07 nano-test.txt
+drwxrwxr-x 2 chamara chamara 4096 Apr 24 04:24 testdir
+-rwxr-xr-- 1 chamara chamara   81 Apr 23 01:55 test.txt
+drwxrwx--- 2 chamara chamara 4096 Apr 24 04:27 umaskdir
+-rw-rw---- 1 chamara chamara    0 Apr 24 04:27 umaskfile
+➜  ~
+```
+
+In the preceding example, you can see that running the
+`umask` command without arguments prints the current umask.
+Running it with a valid umask value as an argument changes
+
+umask to that value, which is then used when creating new files
+and directories. Compare umaskfile and umaskdir with the earlier
+testfile and testdir in the preceding output. This is very useful if
+we want to create files that are private by default!
 #### sudo, chown, and chgrp
+So far, we have seen how we can manipulate the (basic)
+permissions for files and directories. However, we haven't dealt
+with changing either the `owner` or the `group` for a file. It would
+be a little impractical to always have to work with users and
+groups as they were at `creation time`. For Linux, we can use two
+tools to `change the owner and group`: `change owner (chown)`
+and `change group (chgrp)`. However, there is one very important
+thing to note: these commands can only be executed for someone
+with `root permissions (which will, typically, be the root user)`. So,
+before we introduce you to `chown and chgrp`, let's look at `sudo`!
 ##### sudo
+The `sudo` command was originally named for `superuser do`,
+which, as the name implies, gives you a chance to perform an
+action as the `root superuser`. The `sudo` command uses the
+`/etc/sudoers file to determine if users are allowed to elevate to
+superuser permissions`. Let's see how it works!
+
+```bash
+➜  ~ cat /etc/sudoers
+cat: /etc/sudoers: Permission denied
+➜  ~ ls -l /etc/sudoers
+-r--r----- 1 root root 1671 Feb  8 08:41 /etc/sudoers
+➜  ~ sudo cat /etc/sudoers
+[sudo] password for chamara: 
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults        env_reset
+Defaults        mail_badpass
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+Defaults        use_pty
+
+# This preserves proxy settings from user environments of root
+# equivalent users (group sudo)
+#Defaults:%sudo env_keep += "http_proxy https_proxy ftp_proxy all_proxy no_proxy"
+
+# This allows running arbitrary commands, but so does ALL, and it means
+# different sudoers have their choice of editor respected.
+#Defaults:%sudo env_keep += "EDITOR"
+
+# Completely harmless preservation of a user preference.
+#Defaults:%sudo env_keep += "GREP_COLOR"
+
+# While you shouldn't normally run git as root, you need to with etckeeper
+#Defaults:%sudo env_keep += "GIT_AUTHOR_* GIT_COMMITTER_*"
+
+# Per-user preferences; root won't have sensible values for them.
+#Defaults:%sudo env_keep += "EMAIL DEBEMAIL DEBFULLNAME"
+
+# "sudo scp" or "sudo rsync" should be able to use your SSH agent.
+#Defaults:%sudo env_keep += "SSH_AGENT_PID SSH_AUTH_SOCK"
+
+# Ditto for GPG agent
+#Defaults:%sudo env_keep += "GPG_AGENT_INFO"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "@include" directives:
+
+@includedir /etc/sudoers.d
+➜  ~ 
+```
+
+We first try to look at the contents of `/etc/sudoers` as a `normal user`.
+When that gives us a Permission denied error, we look at the
+permissions on the file. From the `-r--r----- 1 root root` line, it
+becomes obvious that only the root user or members of the root
+group can read the file. To elevate to root privileges, we use the
+`sudo` command in front of the command we want to run, which is
+`cat /etc/sudoers`. `For verification, Linux will always ask the user for
+their password. This password is then kept in memory for about
+5 minutes by default, so you do not have to type your password
+every time if you've recently entered it.`
+
+After entering the password, the `/etc/sudoers` file is printed for us!
+It seems that sudo did indeed provide us with `superuser
+permissions`. How that works is also explained by the `/etc/sudoers`
+file. The # Allow members of group sudo to execute any command line is a
+comment (since it starts with a #; more on this later) and tells us
+that the line below gives all users of the sudo group permissions
+for any commands. `On Ubuntu, the default created user is
+considered an administrator and is a member of this group`. Use
+the `id` command to verify this:
+
+```bash
+➜  ~ id
+uid=1000(chamara) gid=1000(chamara) groups=1000(chamara),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),110(lxd)
+➜  ~  
+```
+The `sudo` command has another excellent use: switching to the `root
+user`! For this, use the `--login` flag, or its shorthand, `-i`:
+
+```bash
+➜  ~ sudo -i
+root@ubuntu22:~#
+```
+
+In the prompt, you will see that the `username` has changed from
+`reader to root`. Furthermore, the last character in your prompt is now a `#` instead of a `$`. This is also used to denote the current
+elevated permissions. You can `exit` this elevated position by
+using the `built-in exit shell`:
+
+```bash
+➜  ~ sudo -i
+root@ubuntu22:~# exit
+logout
+➜  ~ 
+```
+
+*`Remember, the root user is the superuser of the system that can do
+everything. And with everything, we really mean everything! Unlike
+other operating systems, if you tell Linux to delete the root file system
+and everything below it, it will happily oblige (right up until the point it
+has destroyed too much to work properly anymore). Do not expect an Are
+you sure? prompt either. Be very, very careful with sudo commands or
+anything in a root prompt.`*
+
 ##### chown, chgrp
+After the little `sudo` detour, we can get back to `file permissions`:
+how do we change the ownership of files? Let's start with
+changing the `group using chgrp`. The syntax is as follows: `chgrp
+<groupname> <filename>:`
+
+```bash
+➜  ~ chgrp games umaskfile 
+chgrp: changing group of 'umaskfile': Operation not permitted
+➜  ~ sudo chgrp games umaskfile 
+➜  ~ ls -l
+total 16
+-rw-rw-r-- 1 chamara chamara   29 Apr 24 02:07 nano-test.txt
+drwxrwxr-x 2 chamara chamara 4096 Apr 24 04:24 testdir
+-rwxr-xr-- 1 chamara chamara   81 Apr 23 01:55 test.txt
+drwxrwx--- 2 chamara chamara 4096 Apr 24 04:27 umaskdir
+-rw-rw---- 1 chamara games      0 Apr 24 04:27 umaskfile
+➜ 
+```
+
+First, we list the contents using `ls`. Next, we try to use `chgrp` to
+change the group of the umaskfile file to games. However, since
+this is a `privileged operation` and we did not start the command
+with `sudo`, it fails with the Operation not permitted error message. Next,
+we use the correct `sudo chgrp games umaskfile` command, which does
+not give us feedback; generally, this is a good sign in Linux. We
+list the files again to make sure that this is the case, and we can
+see that the group has changed to `games` for the `umaskfile`!
+
+Let's do the same, but now for the `user`, by using the `chown`
+command. The syntax is the same as `chgrp`: `chown <username> <filename>:`
+
+```bash
+➜  ~ sudo chown pollinate umaskfile 
+➜  ~ ls -l\
+> 
+total 16
+-rw-rw-r-- 1 chamara   chamara   29 Apr 24 02:07 nano-test.txt
+drwxrwxr-x 2 chamara   chamara 4096 Apr 24 04:24 testdir
+-rwxr-xr-- 1 chamara   chamara   81 Apr 23 01:55 test.txt
+drwxrwx--- 2 chamara   chamara 4096 Apr 24 04:27 umaskdir
+-rw-rw---- 1 pollinate games      0 Apr 24 04:27 umaskfile
+➜  ~
+```
+As we can see, we have now changed the file ownership from
+`reader:reader to pollinate:games`. However, there is one little `trick`
+that's so convenient that we'd like to show you it right away! You
+can actually `use chown to change both users and groups` by using
+the following `syntax: chown <username>:<groupname> <filename>`. Let's see if
+this can restore the umaskfile to its original ownership:
+
+```bash
+➜  ~ sudo chown chamara:chamara umaskfile 
+➜  ~ ls -l
+total 16
+-rw-rw-r-- 1 chamara chamara   29 Apr 24 02:07 nano-test.txt
+drwxrwxr-x 2 chamara chamara 4096 Apr 24 04:24 testdir
+-rwxr-xr-- 1 chamara chamara   81 Apr 23 01:55 test.txt
+drwxrwx--- 2 chamara chamara 4096 Apr 24 04:27 umaskdir
+-rw-rw---- 1 chamara chamara    0 Apr 24 04:27 umaskfile
+➜  ~
+```
+
+We used `random users and groups` in the preceding examples. If you
+want to see which groups are present on the system, inspect the `/etc/group`
+file. For users, the same information can be found in `/etc/passwd`.
+
+```bash
+➜  ~ less /etc/group
+➜  ~ less /etc/passwd
+```
