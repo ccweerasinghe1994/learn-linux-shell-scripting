@@ -5,7 +5,7 @@
   - [ChoosingTheRightTools](#choosingtherighttools)
   - [The Linux File System](#the-linux-file-system)
   - [Understanding the Linux Permission Scheme](#understanding-the-linux-permission-scheme)
-## [introduction](./docs/introduction.md)
+## [Introduction](./docs/introduction.md)
 ## [Setting Up Your Local Environment](./docs/SettingUpYourLocalEnvironment.md)
 
 
