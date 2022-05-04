@@ -1,10 +1,11 @@
-- [Introduction](#introduction)
-  - [What is Linux?](#what-is-linux)
-  - [What is Bash?](#what-is-bash)
-  - [Summary](#summary)
+- [🐻‍❄️ Introduction](#️-introduction)
+  - [🐼 What is Linux?](#-what-is-linux)
+  - [🐨 What is Bash?](#-what-is-bash)
+  - [🐻 Summary](#-summary)
 
-## Introduction
-### What is Linux?
+## 🐻‍❄️ Introduction
+### 🐼 What is Linux?
+****
 Linux is a generic term that refers to different open source
 operating systems that are based on the Linux kernel. The Linux
 kernel was originally created by Linus Torvalds in 1991, and
@@ -72,7 +73,8 @@ devices. If we were to include Unix and other `Unix-like` software,
 we can safely say that most of the devices in the world run on
 these kernels!
 
-### What is Bash?
+### 🐨 What is Bash?
+****
 The most commonly used shell in Linux systems is the `Bourne again shell`, or Bash. The Bash shell is based on the Bourne
 `shell`, known as `sh`. But what is a `shell`?
 
@@ -132,7 +134,8 @@ interaction, tailored to a specific goal. This might sound
 complicated, but it's actually pretty simple: we're talking about
 `Bash scripts`, the subject of this book!
 
-### Summary
+### 🐻 Summary
+****
 In this chapter, you've read about the GNU/Linux operating
 systems and the Linux kernel, what a kernel really is, and how
 big an impact Linux distributions have on daily life. You've also
