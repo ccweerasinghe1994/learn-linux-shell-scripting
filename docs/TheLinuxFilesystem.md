@@ -16,21 +16,21 @@
 - [🍀 Further reading](#-further-reading)
 
 ### 🍀 Technical requirements
-
+****
 We will explore the Linux filesystem using the virtual machine
 we created in `Chapter 2`, Setting Up Your Local Environment.
 
 `If you run into issues with connecting to your virtual machine, make sure that VirtualBox is running and the virtual machine has been started. While there are many things that can cause issues, making sure the hypervisor and virtual machine are running should always be your first step in troubleshooting.`
 
 ### 🍀 The Linux filesystem explained
-
+****
 This chapter will present the basics of the Linux filesystem.
 Because filesystems are complicated, we will not be delving too
 deeply into the guts of the technology; instead, we'll present just
 enough information that's still relevant for shell scripting.
 
 #### 🍃 What is a filesystem?
-
+****
 A filesystem is, in essence, the way data is stored and retrieved
 on a physical medium (which can be a hard disk, solid state
 drive, or even RAM). It is a software implementation that
@@ -91,7 +91,7 @@ while we used `ext4` as the example here, the same goes for `XFS`
 and `Btrfs`.
 
 #### 🍃 What makes the Linux filesystem unique?
-
+****
 As should be clear by now, in reality, there is no such thing as the
 Linux filesystem. However, these filesystems share certain
 characteristics that make them viable as Linux filesystems.
@@ -142,7 +142,7 @@ instruction should account for that possibility.
 `Full disclosure: This part about `journaling`is a bit of an oversimplification, but again filesystems are complicated and we wantto focus on things that are relevant for shell scripting. If you're interested in how filesystems work on a lower level, be sure to pick up another book since it really is a very interesting subject!`
 
 ### 🍀 Structure of the Linux filesystem
-
+****
 While there are many more advanced filesystem features that are
 very interesting, we want to focus on what makes the Linux
 filesystem distinctively Linux: the filesystem structure. If you're
@@ -161,7 +161,7 @@ from the one we use, should you have chosen not to use Ubuntu
 machine and start exploring with us!.
 
 #### 🍃 Tree structure
-
+****
 Let's start by logging in to our virtual machine via SSH:
 
 ```bash
@@ -363,7 +363,7 @@ at it, stay) on the root of the filesystem.
 3. Most often, you will encounter root to mean either 1 or 2!
 
 #### 🍃 Overview of top-level directories
-
+****
 Now that we've got the basics of moving around using `cd` and
 listing directory contents using `ls` under control, let's start
 exploring other parts of the filesystem. Let's begin with an
@@ -379,7 +379,7 @@ since we're undoubtedly going to encounter them in our shell
 scripting. These are /bin/, /sbin/, /usr/, /etc/, /opt/, /tmp/, and /var/.
 
 ##### 🍁 What about multiple partitions?
-
+****
 But first, we'd like to briefly address something you might have
 found confusing, especially if you're coming from a Windows
 background where you're used to `multiple disks/partitions` in the
@@ -412,7 +412,7 @@ connected, which was automatically mounted under `/run/media/`.
 So `not only does Linux handle multiple partitions or disks gracefully, even different types of filesystems can be used side by side under the same tree structure!`
 
 ##### 🍁 /bin/, /sbin/, and /usr/
-
+****
 Let's get back to top-level directories. We'll discuss `/bin/`, `/sbin/`,
 and `/usr/` first, because they are really similar. As stated in the
 overview, `all of these directories contain binaries used by normal users and administrators of the system`. Let's see where those
@@ -516,7 +516,7 @@ important thing to remember is that binaries and libraries
 can be located here.
 
 ##### 🍁 /etc/
-
+****
 On to the next interesting top-level directory within the Linux
 filesystem: the `/etc/` directory. Pronounced `et-c` as in `et-cetera`, it
 is used to store `configuration files` for both `system software` as
@@ -586,7 +586,7 @@ These are just two examples of configuration files found in the
 `/etc/ directory` (important ones though!).
 
 ##### 🍁 /opt/, /tmp/, and /var/
-
+****
 On a fresh installation of Ubuntu, the `/opt/` directory is `empty`.
 While it is again a matter of convention, in our experience, this
 directory is most often used to `install software that comes from outside the distribution's package manager`. However, `some applications that are installed with the package manager do use /opt/ for their files`; it's all a matter of preference by the package
@@ -679,7 +679,7 @@ directories and finding anything on the Linux filesystem will
 surely get a lot easier, as difficult as it might sound right now.
 
 ### 🍀 Everything is a file
-
+****
 Under Linux, there is a well-known expression:
 
 `On a Linux system, everything is a file; if something is not a file, it is a process.`
@@ -694,7 +694,7 @@ understanding about Linux in general, something which is never
 a bad thing!
 
 #### 🍃 Different types of files
-
+****
 The seven types of files are as follows, denoted with the character
 used by Linux to represent them:
 
@@ -788,7 +788,7 @@ special file handlers when they appear on your Linux filesystem.`
 `It's actually pretty simple: if you hit the Tab key after the first part of a command (such as cd or ls), it will complete your command if it has a single choice, or if you hit Tab again, it will present you a list of options. Go to /, type cd, and press Tab twice to see this in action. Moving into the /home/ directory and pressing Tab once (after entering cd) will make it autocomplete with the only directory there is, saving you time!`
 
 ### 🍀 Summary
-
+****
 In this chapter, we presented an overview of the Linux
 filesystem. We started with a short introduction on filesystems in
 general, before explaining what is unique about the Linux
@@ -809,7 +809,7 @@ df, echo, type, cat, and less. As a tip, the Bash autocomplete feature
 was explained.
 
 ### 🍀 Questions
-
+****
 1. What is a filesystem?
 2. Which Linux-specific filesystems are most common?
 3. True or false: multiple filesystem implementations can be
@@ -826,7 +826,7 @@ was explained.
 10. How does the Bash autocomplete function work?
 
 ### 🍀 Further reading
-
+****
 The following resource might be interesting if you'd like to go
 deeper into the subjects of this chapter:
 
