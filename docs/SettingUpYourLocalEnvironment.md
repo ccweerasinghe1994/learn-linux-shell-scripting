@@ -1,20 +1,20 @@
-- [Technical requirements](#technical-requirements)
-- [Choosing between a virtual machine and a physical installation](#choosing-between-a-virtual-machine-and-a-physical-installation)
-- [Setting up VirtualBox](#setting-up-virtualbox)
-- [Creating an Ubuntu virtual machine](#creating-an-ubuntu-virtual-machine)
-  - [Creating the virtual machine in VirtualBox](#creating-the-virtual-machine-in-virtualbox)
-  - [Installing Ubuntu on the virtual machine](#installing-ubuntu-on-the-virtual-machine)
-  - [Accessing the virtual machine via SSH](#accessing-the-virtual-machine-via-ssh)
-- [Summary](#summary)
-- [Questions](#questions)
-- [Further reading](#further-reading)
-### Technical requirements
+- [🔥 Technical requirements](#-technical-requirements)
+- [☄️ Choosing between a virtual machine and a physical installation](#️-choosing-between-a-virtual-machine-and-a-physical-installation)
+- [💧 Setting up VirtualBox](#-setting-up-virtualbox)
+- [🫧 Creating an Ubuntu virtual machine](#-creating-an-ubuntu-virtual-machine)
+  - [⚡ Creating the virtual machine in VirtualBox](#-creating-the-virtual-machine-in-virtualbox)
+  - [⛄ Installing Ubuntu on the virtual machine](#-installing-ubuntu-on-the-virtual-machine)
+  - [🍄 Accessing the virtual machine via SSH](#-accessing-the-virtual-machine-via-ssh)
+- [⛄ Summary](#-summary)
+- [🦀 Questions](#-questions)
+- [🦑 Further reading](#-further-reading)
+### 🔥 Technical requirements
 To complete the exercises in this chapter (and the following
 chapters), you will need either a PC or laptop with at least 2 GHz
 of CPU power, 10 GB of hard disk space, and about 1 GB of RAM
 to spare. Pretty much all hardware created in the last 5 years
 should suffice.
-### Choosing between a virtual machine and a physical installation
+### ☄️ Choosing between a virtual machine and a physical installation
 A virtual machine is an emulation of a physical machine. This
 means it runs inside a physical machine, as opposed to directly
 on the hardware. A physical machine has direct access to all
@@ -76,7 +76,7 @@ this chapter. Even if many other types of deployment should
 work, you would not want to be banging your head against the
 wall for hours when an exercise is not working, before
 discovering it was caused by your setup
-### Setting up VirtualBox
+### 💧 Setting up VirtualBox
 To use virtual machines, we need software called a hypervisor.
 A hypervisor manages resources between the host machine and
 the virtual machines, provides access to disks, and has an
@@ -109,7 +109,7 @@ should not be hard; follow the instructions by the installer.
 After installing a type-2 hypervisor such as VirtualBox, be sure to restart your computer. Hypervisors often need some kernel modules loaded,
 which is easiest to achieve by rebooting
 `
-### Creating an Ubuntu virtual machine
+### 🫧 Creating an Ubuntu virtual machine
 In this book, we're scripting with Bash, which means we do not
 need a GUI for our Linux installation. We have chosen to use
 Ubuntu Server 18.04 LTS as the virtual machine operating
@@ -132,7 +132,7 @@ favorite search engine and search for Ubuntu Server 18.04 ISO download. You
 should find a reference to the Ubuntu archives, which will have the
 required ISO.
 `
-#### Creating the virtual machine in VirtualBox
+#### ⚡ Creating the virtual machine in VirtualBox
 First, we will start with creating the virtual machine to host our
 Ubuntu installation:
 
@@ -218,7 +218,7 @@ a chance an SSH process is already listening on the host
 machine, which would mean VirtualBox would not be
 able to use that port:
 With this step, we've finished setting up the virtual machine!
-#### Installing Ubuntu on the virtual machine
+#### ⛄ Installing Ubuntu on the virtual machine
 Now you can start your virtual machine from the VirtualBox
 main screen. Right click on the machine, select Start followed
 by Normal Start. If all goes well, a new window will pop up,
@@ -305,7 +305,7 @@ Give yourself a pat on the back: you have just created a virtual
 machine, installed Ubuntu Server 18.04 LTS, and logged in via
 the Terminal console. Well done! To exit, type exit or logout and
 press Enter.
-#### Accessing the virtual machine via SSH
+#### 🍄 Accessing the virtual machine via SSH
 We have successfully connected to the Terminal console
 provided to us by VirtualBox. However, this Terminal connection
 is really basic: for example, we can't scroll up, we can't paste
@@ -347,7 +347,7 @@ in the background where you can still connect via SSH (just like what
 happens on actual Linux servers). This option, Headless Start, is found
 right below the earlier Normal Start, when right clicking on the
 machine and selecting Start.`
-### Summary
+### ⛄ Summary
 In this chapter, we have started preparing our local machine for
 the rest of the book. We now know about the differences between
 virtual and physical machines, and why we prefer to use a virtual
@@ -367,7 +367,7 @@ by looking at some different tools we can use that will help us
 with bash scripting, both on the GUI and on the virtual machine
 CLI.
 
-### Questions
+### 🦀 Questions
 1. What are some of the reasons running a virtual machine
 would be preferable to a bare-metal installation?
 2. What are some of the downsides of running a virtual
@@ -385,7 +385,7 @@ installation, and we never end up at the Ubuntu
 installation (but instead see an error)?
 8. Why did we set up NAT forwarding for the virtual
 machine?
-### Further reading
+### 🦑 Further reading
 Further reading
 The following resources might be interesting if you'd like to go
 deeper into the subjects of this chapter:
