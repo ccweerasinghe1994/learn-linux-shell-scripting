@@ -172,7 +172,7 @@ machine and start exploring with us!.
 Let's start by logging in to our virtual machine via SSH:
 
 ```bash
-ssh -p 2222 reader@localhost
+🔥 -> ~ ssh -p 2222 reader@localhost
 ```
 Enter your password at the prompt and you should arrive at the
 default Ubuntu 18.04 login banner, which should look similar to
@@ -189,7 +189,7 @@ Memory usage: 15% IP address for enp0s3: 10.0.2.15
 Swap usage: 0%
 <SNIPPED>
 Last login: Sat Jul 28 14:13:42 2018 from 10.0.2.2
-reader@ubuntu:~$
+reader@🔥:~$
 ```
 When logging in (either via SSH or the Terminal console) you
 will end up at the home directory of the user. You can always find
@@ -197,7 +197,7 @@ out where you are exactly by using the pwd command. pwd stands
 for print working directory:
 
 ```bash
-reader@ubuntu:~$ pwd
+🔥 -> ~ pwd
 /home/reader
 ```
 
@@ -222,13 +222,13 @@ where we want to go as the argument to the command. Navigate
 to the filesystem `root`:
 
 ```bash
-reader@ubuntu:~$ cd /
-reader@ubuntu:/$
+reader@🔥:~$ cd /
+reader@🔥:/$
 
 ```
 
 ```bash
-➜  / ls
+🔥 -> ~  / ls
 bin  boot  dev  etc  home  lib  lib32  lib64  libx32  lost+found  media  mnt  opt  proc  root  run  sbin  snap  srv  sys  tmp  usr  var
 ```
 As you can see, nothing much seems to have happened.
@@ -241,13 +241,13 @@ character is `shorthand` for the `user's home directory`! If the
 shorthand wasn't there, the prompt at login would be
 
 ```bash
-reader@ubuntu:/home/reader$.
+reader@🔥:/home/reader$.
 ```
 Since we have navigated to the root of the filesystem, let's checkout what we can find there. To list the contents of the current
 directory, we use the ls command:
 
 ```bash
-reader@ubuntu:/$ ls
+reader@🔥:/$ ls
 bin dev home initrd.img.old lib64 media opt root sbin srv sys usr vmlinuz
 boot etc initrd.img lib lost+found mnt proc run snap swap.img tmp var vmlinuz
 ```
@@ -277,8 +277,8 @@ qualified path (which is not relative to the current directory).
 Let's try both:
 
 ```bash
-reader@ubuntu:/$ cd home
-reader@ubuntu:/home$
+reader@🔥:/$ cd home
+reader@🔥:/home$
 ```
 
 The preceding is an example of changing directories into a
@@ -288,17 +288,17 @@ and we navigated to `home` from there, effectively ending up in
 `fully qualified path`:
 
 ```bash
-reader@ubuntu:/$ cd /home
-reader@ubuntu:/home$
+reader@🔥:/$ cd /home
+reader@🔥:/home$
 ```
 Did you spot the difference? In the fully qualified example, the
 argument to cd started with a slash, but in the relative example it
 did not. Let's see what happens if you use both types incorrectly:
 
 ```bash
-reader@ubuntu:/home$ ls
+reader@🔥:/home$ ls
 reader
-reader@ubuntu:/home$ cd /reader
+reader@🔥:/home$ cd /reader
 -bash: cd: /reader: No such file or directory
 ```
 
@@ -311,9 +311,9 @@ looking for is `/home/reader`, which would be reached fully qualified
 with the command `cd /home/reader`:
 
 ```bash
-reader@ubuntu:/home$ cd home
+reader@🔥:/home$ cd home
 -bash: cd: home: No such file or directory
-reader@ubuntu:/home$
+reader@🔥:/home$
 ```
 
 The same error is presented if we try to use an incorrect relative
@@ -340,8 +340,8 @@ qualified paths. We can use the `..` notation, which means as
 much as `go up a level toward /:`
 
 ```bash
-reader@ubuntu:/home$ cd ..
-reader@ubuntu:/$
+reader@🔥:/home$ cd ..
+reader@🔥:/$
 ```
 `A note on terminology is in order here. While we conceptualized the
 filesystem as a tree, when talking about the root directory, we consider
@@ -358,8 +358,8 @@ highest level of the filesystem, what would happen?. Give it a
 try:
 
 ```bash
-reader@ubuntu:/$ cd ..
-reader@ubuntu:/$
+reader@🔥:/$ cd ..
+reader@🔥:/$
 ```
 
 Fortunately for us, we do not get an error nor a crashing
@@ -448,10 +448,10 @@ short description is simply display a line of text. Let's see how it
 works:
 
 ```bash
-reader@ubuntu:~$ echo
-reader@ubuntu:~$ echo 'Hello'
+reader@🔥:~$ echo
+reader@🔥:~$ echo 'Hello'
 Hello
-reader@ubuntu:~$
+reader@🔥:~$
 ```
 If we use echo without passing an argument, an empty line of text
 is displayed (pretty much just as promised by the short
@@ -466,11 +466,11 @@ time. Let's use echo to print the current value of the variable
 BASH_VERSION:
 
 ```bash
-reader@ubuntu:~$ echo BASH_VERSION
+reader@🔥:~$ echo BASH_VERSION
 BASH_VERSION
-reader@ubuntu:~$ echo $BASH_VERSION
+reader@🔥:~$ echo $BASH_VERSION
 4.4.19(1)-release
-reader@ubuntu:~$
+reader@🔥:~$
 ```
 You should notice we did not use the echo BASH_VERSION command,
 since that would print the literal text BASH_VERSION, but we instead
@@ -482,9 +482,9 @@ use from our Terminal are found by using a variable, specifically
 the PATH variable:
 
 ```bash
-reader@ubuntu:~$ echo $PATH
+reader@🔥:~$ echo $PATH
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin <SNIPPED>
-reader@ubuntu:~$
+reader@🔥:~$
 ```
 As you can see here, binaries need to be in the `/usr/local/sbin/`,
 `/usr/local/bin/`, `/usr/sbin/`, `/usr/bin/`, `/sbin/`, or `/bin/` directory for us to
@@ -501,11 +501,11 @@ command we just learned, which is both! We can see what type
 of command we're dealing with by using type:
 
 ```bash
-reader@ubuntu:~$ type -a echo
+reader@🔥:~$ type -a echo
 echo is a shell builtin
 echo is /bin/echo
-reader@ubuntu:~$ type -a cdcd is a shell builtin
-reader@ubuntu:~$
+reader@🔥:~$ type -a cdcd is a shell builtin
+reader@🔥:~$
 ```
 `If a command is both built-in and a binary within the PATH, the
 binary is used`. If it is only present as a built-in, such as cd, the
@@ -554,7 +554,7 @@ is used to store `configuration files` for both `system software` as
 well as `user software`. Let's see what it contains:
 
 ```bash
-reader@ubuntu:/etc# ls
+reader@🔥:/etc# ls
 acpi console-setup ethertypes inputrc logrotate.conf network python3 shadow ucf.conf
 ...<SNIPPED>:
 ```
@@ -564,10 +564,10 @@ you will see well over 150 files and directories. We will print a
 particularly interesting one using the cat command:
 
 ```bash
-reader@ubuntu:/etc$ cat fstab
+reader@🔥:/etc$ cat fstab
 UUID=376cd784-7c8f-11e8-a415-080027a7d0ea / ext4 defaults 0 0
 /swap.img none swap sw 0 0
-reader@ubuntu:/etc$
+reader@🔥:/etc$
 ```
 What we're seeing here is the `file systems table`, or `fstab` file. It
 contains the instructions for Linux to `mount the filesystems` at
@@ -586,7 +586,7 @@ aren't stored there. Let's check the contents using the `less`
 command:
 
 ```bash
-reader@ubuntu:/etc$ less passwd
+reader@🔥:/etc$ less passwd
 ```
 This will open the file in a so-called pager, in `read-only` mode.
 less uses `Vim` commands, so you can quit by pressing the `Q` on
@@ -642,8 +642,8 @@ Finally, the `/var/` directory is a little more complex. Let's have a
 look:
 
 ```bash
-reader@ubuntu:~$ cd /var/
-reader@ubuntu:/var$ ls -l
+reader@🔥:~$ cd /var/
+reader@🔥:/var$ ls -l
 total 48
 drwxr-xr-x 2 root root 4096 Jul 29 10:14 backups
 drwxr-xr-x 10 root root 4096 Jul 29 12:31 cache
@@ -658,7 +658,7 @@ drwxr-xr-x 3 root root 4096 Jun 30 18:20 snap
 drwxr-xr-x 4 root root 4096 Apr 26 19:08 spool
 drwxrwxrwt 4 root root 4096 Jul 29 15:04 tmp
 drwxr-xr-x 3 root root 4096 Jul 29 12:30 www
-reader@ubuntu:/var$
+reader@🔥:/var$
 ```
 
 As you should see, `/var/` contains many subdirectories and some
@@ -675,7 +675,7 @@ subdirectory in `/var/log/`. Let's look at an example of a log file
 using less with a fully qualified path:
 
 ```bash
-reader@ubuntu:~$ less /var/log/kern.log
+reader@🔥:~$ less /var/log/kern.log
 ```
 In the less pager, you'll encounter something which looks similar
 to the following:
@@ -744,7 +744,7 @@ A good place to encounter the most common file types is in /dev/.
 Let's use ls to see what it contains:
 
 ```bash
-reader@ubuntu:/dev$ ls -l /dev/
+reader@🔥:/dev$ ls -l /dev/
 total 0
 crw-r--r-- 1 root root 10, 235 Jul 29 15:04 autofs
 drwxr-xr-x 2 root root 280 Jul 29 15:04 block
@@ -772,7 +772,7 @@ crw-rw-rw- 1 root tty 5, 0 Jul 29 17:58 tty
 crw--w---- 1 root tty 4, 0 Jul 29 15:04 tty0
 crw--w---- 1 root tty 4, 1 Jul 29 15:04 tty1
 ...<SNIPPED>:
-reader@ubuntu:/dev$
+reader@🔥:/dev$
 ```
 
 As you saw from your output, `/dev/` contains a lot of files, with

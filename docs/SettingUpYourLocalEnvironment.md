@@ -325,7 +325,7 @@ command (substitute the username or port number if
 necessary):
 
 ```bash
-$ ssh reader@localhost -p 2222
+🔥 -> ~ ssh reader@localhost -p 2222
 ```
 
 However, there is a good chance you're running Windows. In

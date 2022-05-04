@@ -85,7 +85,7 @@ can see this for yourself by running the id command on your
 Ubuntu machine:
 
 ```bash
-➜  ~ id
+🔥 🔥 ➜  ~ id
 uid=1000(chamara) gid=1000(chamara) groups=1000(chamara),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),110(lxd)
 ```
 In the preceding output, we can see the following things:
@@ -148,14 +148,14 @@ Let's look at some simple examples before it gets too abstract. On
 your virtual machine, follow along with the following commands:
 
 ```bash
-➜  ~ pwd
+🔥 ➜  ~ pwd
 /home/chamara
-➜  ~ ls -l
+🔥 ➜  ~ ls -l
 total 8
 -rw-rw-r-- 1 chamara chamara 29 Apr 22 03:12 nano-test.txt
 -rw-rw-r-- 1 chamara chamara 81 Apr 23 01:55 test.txt
-➜  ~ touch nano-test.txt  
-➜  ~ 
+🔥 ➜  ~ touch nano-test.txt  
+🔥 ➜  ~ 
 ```
 
 First, we ensure that we are in the home directory for the chamara
@@ -173,11 +173,11 @@ again:
 
 
 ```bash
-➜  ~ ls -l
+🔥 ➜  ~ ls -l
 total 8
 -rw-rw-r-- 1 chamara chamara 29 Apr 24 02:07 nano-test.txt
 -rw-rw-r-- 1 chamara chamara 81 Apr 23 01:55 test.txt
-➜  ~ 
+🔥 ➜  ~ 
 ```
 
 You'll see the permission followed by two names: the `username`
@@ -205,7 +205,7 @@ Let's look at another example:
 drwx------   4 root root  4096 Apr 10 00:52 root
 dr-xr-xr-x 381 root root     0 Apr 23 03:59 proc
 drwxr-xr-x  30 root root   880 Apr 24 01:16 run
-➜  ~ 
+🔥 ➜  ~ 
 ```
 
 The home directory for the systems' superuser is `/root/`. We can see
@@ -221,11 +221,11 @@ either, since we're neither the root user or in the root group. In
 this case, the permissions of others will be applied, this being `---:`
 
 ```bash
-➜  ~ cd /root/
+🔥 ➜  ~ cd /root/
 cd: permission denied: /root/
-➜  ~ ls /root/
+🔥 ➜  ~ ls /root/
 ls: cannot open directory '/root/': Permission denied
-➜  ~ 
+🔥 ➜  ~ 
 ```
 ### Manipulating file permissions and ownership
 
@@ -277,29 +277,29 @@ If we do `not` specify `user, group, others, or all`, `all` is used by
 `default`. Let's try this out on our Ubuntu machine:
 
 ```bash
-➜  ~ cd
-➜  ~ pwd
+🔥 ➜  ~ cd
+🔥 ➜  ~ pwd
 /home/chamara
-➜  ~ ls -l 
+🔥 ➜  ~ ls -l 
 total 8
 -rw-rw-r-- 1 chamara chamara 29 Apr 24 02:07 nano-test.txt
 -rw-rw-r-- 1 chamara chamara 81 Apr 23 01:55 test.txt
-➜  ~ chmod u+x test.txt 
-➜  ~ ls -l
+🔥 ➜  ~ chmod u+x test.txt 
+🔥 ➜  ~ ls -l
 total 8
 -rw-rw-r-- 1 chamara chamara 29 Apr 24 02:07 nano-test.txt
 -rwxrw-r-- 1 chamara chamara 81 Apr 23 01:55 test.txt
-➜  ~ chmod g-rwx test.txt 
-➜  ~ ls -l
+🔥 ➜  ~ chmod g-rwx test.txt 
+🔥 ➜  ~ ls -l
 total 8
 -rw-rw-r-- 1 chamara chamara 29 Apr 24 02:07 nano-test.txt
 -rwx---r-- 1 chamara chamara 81 Apr 23 01:55 test.txt
-➜  ~ chmod -r test.txt 
-➜  ~ ls -l
+🔥 ➜  ~ chmod -r test.txt 
+🔥 ➜  ~ ls -l
 total 8
 -rw-rw-r-- 1 chamara chamara 29 Apr 24 02:07 nano-test.txt
 --wx------ 1 chamara chamara 81 Apr 23 01:55 test.txt
-➜  ~ 
+🔥 ➜  ~ 
 ```
 First, we added the `execute` permission for the `user` to the `testfile`.
 Next, we `removed` `read`, `write`, and `execute` from the `group`,
@@ -315,9 +315,9 @@ the `verbose` option on `chmod` to make it print more information by
 using the `-v` flag:
     
 ```bash
-➜  ~ chmod -v u+rwx test.txt 
+🔥 ➜  ~ chmod -v u+rwx test.txt 
 mode of 'test.txt' changed from 0300 (-wx------) to 0700 (rwx------)
-➜  ~
+🔥 ➜  ~
 ```
 
 As you can see, we now get output from `chmod`! Specifically, we can
@@ -357,9 +357,9 @@ file full permissions (RWX or 7) for user, group, and others in a
 single command:
 
 ```bash
-➜  ~ chmod -v 0777 test.txt 
+🔥 ➜  ~ chmod -v 0777 test.txt 
 mode of 'test.txt' changed from 0700 (rwx------) to 0777 (rwxrwxrwx)
-➜  ~
+🔥 ➜  ~
 ```
 In this case, `chmod` accepts four numbers as the argument. The `first
 number` is in regards to a special type of permission called the
@@ -378,17 +378,17 @@ either three commands or one `chained` command (another
 function of chmod):
 
 ```bash
-➜  ~ chmod 0000 test.txt
-➜  ~ ls -l              
+🔥 ➜  ~ chmod 0000 test.txt
+🔥 ➜  ~ ls -l              
 total 8
 -rw-rw-r-- 1 chamara chamara 29 Apr 24 02:07 nano-test.txt
 ---------- 1 chamara chamara 81 Apr 23 01:55 test.txt
-➜  ~ chmod u+rwx,g+rw,o+r test.txt 
-➜  ~ ls -l
+🔥 ➜  ~ chmod u+rwx,g+rw,o+r test.txt 
+🔥 ➜  ~ ls -l
 total 8
 -rw-rw-r-- 1 chamara chamara 29 Apr 24 02:07 nano-test.txt
 -rwxrw-r-- 1 chamara chamara 81 Apr 23 01:55 test.txt
-➜  ~ 
+🔥 ➜  ~ 
 ```
 
 As you can see from the `chmod u+rwx,g+rx,o+r` testfile command,
@@ -396,17 +396,17 @@ things have gotten a bit complicated. Using `octal` notation,
 however, the command is much `simpler`:
 
 ```bash
-➜  ~ chmod 0000 test.txt 
-➜  ~ ls -l
+🔥 ➜  ~ chmod 0000 test.txt 
+🔥 ➜  ~ ls -l
 total 8
 -rw-rw-r-- 1 chamara chamara 29 Apr 24 02:07 nano-test.txt
 ---------- 1 chamara chamara 81 Apr 23 01:55 test.txt
-➜  ~ chmod 0754 test.txt
-➜  ~ ls -l              
+🔥 ➜  ~ chmod 0754 test.txt
+🔥 ➜  ~ ls -l              
 total 8
 -rw-rw-r-- 1 chamara chamara 29 Apr 24 02:07 nano-test.txt
 -rwxr-xr-- 1 chamara chamara 81 Apr 23 01:55 test.txt
-➜  ~ 
+🔥 ➜  ~ 
 ```
 Basically, the difference is mainly using `imperative` notation
 `(add or remove permissions)` versus `declarative` notation `(set it
@@ -428,9 +428,9 @@ but where do they come from? And how can we manipulate
 them? Let's meet `umask`:
 
 ```bash
-➜  ~ umask
+🔥 ➜  ~ umask
 002
-➜  ~ 
+🔥 ➜  ~ 
 ```
 
 The `umask session` is used to determine the file permissions for
@@ -451,8 +451,8 @@ a new directory with the `mkdir` command:
 
 
 ```bash
-➜  ~ mkdir testdir
-➜  ~ ls -l
+🔥 ➜  ~ mkdir testdir
+🔥 ➜  ~ ls -l
 total 12
 -rw-rw-r-- 1 chamara chamara   29 Apr 24 02:07 nano-test.txt
 drwxrwxr-x 2 chamara chamara 4096 Apr 24 04:24 testdir
@@ -469,21 +469,21 @@ and directories ourselves. We can also do this using the umask
 command:
 
 ```bash 
-➜  ~ umask
+🔥 ➜  ~ umask
 002
-➜  ~ umask 0007
-➜  ~ umask
+🔥 ➜  ~ umask 0007
+🔥 ➜  ~ umask
 007
-➜  ~ touch umaskfile
-➜  ~ mkdir umaskdir
-➜  ~ ls -l
+🔥 ➜  ~ touch umaskfile
+🔥 ➜  ~ mkdir umaskdir
+🔥 ➜  ~ ls -l
 total 16
 -rw-rw-r-- 1 chamara chamara   29 Apr 24 02:07 nano-test.txt
 drwxrwxr-x 2 chamara chamara 4096 Apr 24 04:24 testdir
 -rwxr-xr-- 1 chamara chamara   81 Apr 23 01:55 test.txt
 drwxrwx--- 2 chamara chamara 4096 Apr 24 04:27 umaskdir
 -rw-rw---- 1 chamara chamara    0 Apr 24 04:27 umaskfile
-➜  ~
+🔥 ➜  ~
 ```
 
 In the preceding example, you can see that running the
@@ -513,11 +513,11 @@ action as the `root superuser`. The `sudo` command uses the
 superuser permissions`. Let's see how it works!
 
 ```bash
-➜  ~ cat /etc/sudoers
+🔥 ➜  ~ cat /etc/sudoers
 cat: /etc/sudoers: Permission denied
-➜  ~ ls -l /etc/sudoers
+🔥 ➜  ~ ls -l /etc/sudoers
 -r--r----- 1 root root 1671 Feb  8 08:41 /etc/sudoers
-➜  ~ sudo cat /etc/sudoers
+🔥 ➜  ~ sudo cat /etc/sudoers
 [sudo] password for chamara: 
 #
 # This file MUST be edited with the 'visudo' command as root.
@@ -573,7 +573,7 @@ root    ALL=(ALL:ALL) ALL
 # See sudoers(5) for more information on "@include" directives:
 
 @includedir /etc/sudoers.d
-➜  ~ 
+🔥 ➜  ~ 
 ```
 
 We first try to look at the contents of `/etc/sudoers` as a `normal user`.
@@ -598,15 +598,15 @@ considered an administrator and is a member of this group`. Use
 the `id` command to verify this:
 
 ```bash
-➜  ~ id
+🔥 ➜  ~ id
 uid=1000(chamara) gid=1000(chamara) groups=1000(chamara),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),110(lxd)
-➜  ~  
+🔥 ➜  ~  
 ```
 The `sudo` command has another excellent use: switching to the `root
 user`! For this, use the `--login` flag, or its shorthand, `-i`:
 
 ```bash
-➜  ~ sudo -i
+🔥 ➜  ~ sudo -i
 root@ubuntu22:~#
 ```
 
@@ -616,10 +616,10 @@ elevated permissions. You can `exit` this elevated position by
 using the `built-in exit shell`:
 
 ```bash
-➜  ~ sudo -i
+🔥 ➜  ~ sudo -i
 root@ubuntu22:~# exit
 logout
-➜  ~ 
+🔥 ➜  ~ 
 ```
 
 *`Remember, the root user is the superuser of the system that can do
@@ -637,17 +637,17 @@ changing the `group using chgrp`. The syntax is as follows: `chgrp
 <groupname> <filename>:`
 
 ```bash
-➜  ~ chgrp games umaskfile 
+🔥 ➜  ~ chgrp games umaskfile 
 chgrp: changing group of 'umaskfile': Operation not permitted
-➜  ~ sudo chgrp games umaskfile 
-➜  ~ ls -l
+🔥 ➜  ~ sudo chgrp games umaskfile 
+🔥 ➜  ~ ls -l
 total 16
 -rw-rw-r-- 1 chamara chamara   29 Apr 24 02:07 nano-test.txt
 drwxrwxr-x 2 chamara chamara 4096 Apr 24 04:24 testdir
 -rwxr-xr-- 1 chamara chamara   81 Apr 23 01:55 test.txt
 drwxrwx--- 2 chamara chamara 4096 Apr 24 04:27 umaskdir
 -rw-rw---- 1 chamara games      0 Apr 24 04:27 umaskfile
-➜ 
+🔥 ➜ 
 ```
 
 First, we list the contents using `ls`. Next, we try to use `chgrp` to
@@ -663,8 +663,8 @@ Let's do the same, but now for the `user`, by using the `chown`
 command. The syntax is the same as `chgrp`: `chown <username> <filename>:`
 
 ```bash
-➜  ~ sudo chown pollinate umaskfile 
-➜  ~ ls -l\
+🔥 ➜  ~ sudo chown pollinate umaskfile 
+🔥 ➜  ~ ls -l\
 > 
 total 16
 -rw-rw-r-- 1 chamara   chamara   29 Apr 24 02:07 nano-test.txt
@@ -672,7 +672,7 @@ drwxrwxr-x 2 chamara   chamara 4096 Apr 24 04:24 testdir
 -rwxr-xr-- 1 chamara   chamara   81 Apr 23 01:55 test.txt
 drwxrwx--- 2 chamara   chamara 4096 Apr 24 04:27 umaskdir
 -rw-rw---- 1 pollinate games      0 Apr 24 04:27 umaskfile
-➜  ~
+🔥 ➜  ~
 ```
 As we can see, we have now changed the file ownership from
 `reader:reader to pollinate:games`. However, there is one little `trick`
@@ -682,15 +682,15 @@ the following `syntax: chown <username>:<groupname> <filename>`. Let's see if
 this can restore the umaskfile to its original ownership:
 
 ```bash
-➜  ~ sudo chown chamara:chamara umaskfile 
-➜  ~ ls -l
+🔥 ➜  ~ sudo chown chamara:chamara umaskfile 
+🔥 ➜  ~ ls -l
 total 16
 -rw-rw-r-- 1 chamara chamara   29 Apr 24 02:07 nano-test.txt
 drwxrwxr-x 2 chamara chamara 4096 Apr 24 04:24 testdir
 -rwxr-xr-- 1 chamara chamara   81 Apr 23 01:55 test.txt
 drwxrwx--- 2 chamara chamara 4096 Apr 24 04:27 umaskdir
 -rw-rw---- 1 chamara chamara    0 Apr 24 04:27 umaskfile
-➜  ~
+🔥 ➜  ~
 ```
 
 We used `random users and groups` in the preceding examples. If you
@@ -698,8 +698,8 @@ want to see which groups are present on the system, inspect the `/etc/group`
 file. For users, the same information can be found in `/etc/passwd`.
 
 ```bash
-➜  ~ less /etc/group
-➜  ~ less /etc/passwd
+🔥 ➜  ~ less /etc/group
+🔥 ➜  ~ less /etc/passwd
 ```
 ### Working with multiple users
 As we've stated before, `Linux` is inherently a `multi-user
@@ -727,20 +727,20 @@ As was the case with `chown` and `chgrp`, `useradd (and later usermod) is a
 privileged command`, which we will execute with sudo:
 
 ```bash
-➜  ~ useradd dev-user-1
+🔥 ➜  ~ useradd dev-user-1
 useradd: Permission denied.
 useradd: cannot lock /etc/passwd; try again later.
-➜  ~ sudo useradd dev-user-1
+🔥 ➜  ~ sudo useradd dev-user-1
 [sudo] password for chamara: 
-➜  ~ sudo useradd ops-user-1
-➜  ~ sudo useradd sec-user-1
-➜  ~ id dev-user-1 
+🔥 ➜  ~ sudo useradd ops-user-1
+🔥 ➜  ~ sudo useradd sec-user-1
+🔥 ➜  ~ id dev-user-1 
 uid=1001(dev-user-1) gid=1001(dev-user-1) groups=1001(dev-user-1)
-➜  ~ id ops-user-1 
+🔥 ➜  ~ id ops-user-1 
 uid=1002(ops-user-1) gid=1002(ops-user-1) groups=1002(ops-user-1)
-➜  ~ id sec-user-1 
+🔥 ➜  ~ id sec-user-1 
 uid=1003(sec-user-1) gid=1003(sec-user-1) groups=1003(sec-user-1)
-➜  ~
+🔥 ➜  ~
 ```
 
 As a last reminder, we've showed you what happens when you
@@ -761,10 +761,10 @@ operation): `groupadd`. Check the man page for groupadd and add three
 groups corresponding to our departments:
 
 ```bash
-➜  ~ sudo groupadd development
-➜  ~ sudo groupadd operations
-➜  ~ sudo groupadd security
-➜  ~ cat /etc/group
+🔥 ➜  ~ sudo groupadd development
+🔥 ➜  ~ sudo groupadd operations
+🔥 ➜  ~ sudo groupadd security
+🔥 ➜  ~ cat /etc/group
 root:x:0:
 daemon:x:1:
 bin:x:2:
@@ -828,7 +828,7 @@ sec-user-1:x:1003:
 development:x:1004:
 operations:x:1005:
 security:x:1006:
-➜  ~
+🔥 ➜  ~
 ```
 To see which `groups` are already available, you can check out the
 `/etc/group` file (with, for example, `less` or `cat`). Once you're satisfied,
@@ -837,16 +837,16 @@ the users `members` of the `groups`? Enter `usermod` (which stands for user modi
 follows: `usermod -g <groupname> <username>:`
 
 ```bash
-➜  ~ sudo usermod -g development dev-user-1 
-➜  ~ sudo usermod -g operations ops-user-1 
-➜  ~ sudo usermod -g security sec-user-1  
-➜  ~ id dev-user-1 
+🔥 ➜  ~ sudo usermod -g development dev-user-1 
+🔥 ➜  ~ sudo usermod -g operations ops-user-1 
+🔥 ➜  ~ sudo usermod -g security sec-user-1  
+🔥 ➜  ~ id dev-user-1 
 uid=1001(dev-user-1) gid=1004(development) groups=1004(development)
-➜  ~ id sec-user-1 
+🔥 ➜  ~ id sec-user-1 
 uid=1003(sec-user-1) gid=1006(security) groups=1006(security)
-➜  ~ id ops-user-1 
+🔥 ➜  ~ id ops-user-1 
 uid=1002(ops-user-1) gid=1005(operations) groups=1005(operations)
-➜  ~ 
+🔥 ➜  ~ 
 ```
 
 What we have accomplished now is closer to our goal, but we're
@@ -858,29 +858,29 @@ create some `directories` (using `mkdir`, which stands for make
 directory) with the correct groups and see how far we can get:
 
 ```bash
-➜  ~ sudo mkdir /data
-➜  ~ cd /data
-➜  /data ls
-➜  /data sudo mkdir dev-files
-➜  /data sudo mkdir ops-flies
-➜  /data sudo mkdir devops files
-➜  /data ls -l
+🔥 ➜  ~ sudo mkdir /data
+🔥 ➜  ~ cd /data
+🔥 ➜  /data ls
+🔥 ➜  /data sudo mkdir dev-files
+🔥 ➜  /data sudo mkdir ops-flies
+🔥 ➜  /data sudo mkdir devops files
+🔥 ➜  /data ls -l
 total 16
 drwxr-xr-x 2 root root 4096 Apr 24 06:58 dev-files
 drwxr-xr-x 2 root root 4096 Apr 24 06:59 devops
 drwxr-xr-x 2 root root 4096 Apr 24 06:59 files
 drwxr-xr-x 2 root root 4096 Apr 24 06:58 ops-flies
-➜  /data sudo chgrp development dev-files 
-➜  /data sudo chgrp operations ops-flies 
-➜  /data sudo chmod 0770 dev-files 
-➜  /data sudo chmod 0770 ops-flies 
-➜  /data ls -l
+🔥 ➜  /data sudo chgrp development dev-files 
+🔥 ➜  /data sudo chgrp operations ops-flies 
+🔥 ➜  /data sudo chmod 0770 dev-files 
+🔥 ➜  /data sudo chmod 0770 ops-flies 
+🔥 ➜  /data ls -l
 total 16
 drwxrwx--- 2 root development 4096 Apr 24 06:58 dev-files
 drwxr-xr-x 2 root root        4096 Apr 24 06:59 devops
 drwxr-xr-x 2 root root        4096 Apr 24 06:59 files
 drwxrwx--- 2 root operations  4096 Apr 24 06:58 ops-flies
-➜  /data 
+🔥 ➜  /data 
 ```
 
 We now have the following structure: a `/data/` top level directory,
@@ -892,12 +892,12 @@ change the `main groups`, we can also append users to extra
 groups. In this case, the syntax is `usermod -a -G <groupnames> <username>`.
 Let's add sec-user1 to the development and operations groups:
 ```bash
-➜  /data id sec-user-1 
+🔥 ➜  /data id sec-user-1 
 uid=1003(sec-user-1) gid=1006(security) groups=1006(security)
-➜  /data sudo usermod -a -G development,operations sec-user-1 
-➜  /data id sec-user-1 
+🔥 ➜  /data sudo usermod -a -G development,operations sec-user-1 
+🔥 ➜  /data id sec-user-1 
 uid=1003(sec-user-1) gid=1006(security) groups=1006(security),1004(development),1005(operations)
-➜  /data 
+🔥 ➜  /data 
 ```
 The `user` from the `security` department is now a member of all
 new groups: `security`, `development`, and `operations`. Since both
@@ -907,7 +907,7 @@ but `sec-user1` should be. Let's see if this is correct:
 
 
 ```bash
-➜  /data sudo su - sec-user-1 
+🔥 ➜  /data sudo su - sec-user-1 
 su: warning: cannot change directory to /home/sec-user-1: No such file or directory
 $ ls
 dev-files  devops  files  ops-flies
@@ -929,7 +929,7 @@ $ ls -l
 total 0
 -rw-r--r-- 1 sec-user-1 security 0 Apr 24 07:17 sequrity-file
 $ exit
-➜  /data
+🔥 ➜  /data
 ```
 If you followed along with this example, you should see that we
 introduced a new command: `su`. Short for `switch user`, it allows
@@ -952,28 +952,28 @@ group, we will add both `dev-user1` and `ops-user1` to this group, in the
 same way we added `sec-user1` to the `development` and `operations` groups:
 
 ```bash
-➜  ~ sudo groupadd devops
-➜  ~ sudo usermod -a -G devops dev-user-1 
-➜  ~ sudo usermod -a -G devops ops-user-1 
-➜  ~ id dev-user-1 
+🔥 ➜  ~ sudo groupadd devops
+🔥 ➜  ~ sudo usermod -a -G devops dev-user-1 
+🔥 ➜  ~ sudo usermod -a -G devops ops-user-1 
+🔥 ➜  ~ id dev-user-1 
 uid=1001(dev-user-1) gid=1004(development) groups=1004(development),1007(devops)
-➜  ~ id ops-user-1 
+🔥 ➜  ~ id ops-user-1 
 uid=1002(ops-user-1) gid=1005(operations) groups=1005(operations),1007(devops)
-➜  ~ cd /data
-➜  /data ls -l
+🔥 ➜  ~ cd /data
+🔥 ➜  /data ls -l
 total 16
 drwxrwx--- 2 root development 4096 Apr 24 07:17 dev-files
 drwxr-xr-x 2 root root        4096 Apr 24 06:59 devops
 drwxr-xr-x 2 root root        4096 Apr 24 06:59 files
 drwxrwx--- 2 root operations  4096 Apr 24 06:58 ops-flies
-➜  /data sudo chown root:devops devops 
-➜  /data ls -l
+🔥 ➜  /data sudo chown root:devops devops 
+🔥 ➜  /data ls -l
 total 16
 drwxrwx--- 2 root development 4096 Apr 24 07:17 dev-files
 drwxr-xr-x 2 root devops      4096 Apr 24 06:59 devops
 drwxr-xr-x 2 root root        4096 Apr 24 06:59 files
 drwxrwx--- 2 root operations  4096 Apr 24 06:58 ops-flies
-➜  /data
+🔥 ➜  /data
 ```
 We now have a shared directory, `/data/devops-files/`, where both `dev-user-1` and `ops-user1` can enter and `create files`.
 As an exercise, do any of the following:
@@ -981,7 +981,7 @@ As an exercise, do any of the following:
 as a dev user
 
 ```bash
-➜  /data sudo su - dev-user-1 
+🔥 ➜  /data sudo su - dev-user-1 
 su: warning: cannot change directory to /home/dev-user-1: No such file or directory
 $ id
 uid=1001(dev-user-1) gid=1004(development) groups=1004(development),1007(devops)
@@ -997,7 +997,7 @@ $
 ```
 as a ops user
 ```bash
-➜  /data sudo su - ops-user-1 
+🔥 ➜  /data sudo su - ops-user-1 
 su: warning: cannot change directory to /home/ops-user-1: No such file or directory
 $ uid
 -sh: 1: uid: not found
