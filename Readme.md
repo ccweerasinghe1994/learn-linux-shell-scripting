@@ -7,9 +7,6 @@
   - [5.🦄Understanding the Linux Permission Scheme](#5understanding-the-linux-permission-scheme)
 ## [1.🦊introduction](./docs/introduction.md)
 ## [2.🦁Setting Up Your Local Environment](./docs/SettingUpYourLocalEnvironment.md)
-
-
 ## [3.🦝ChoosingTheRightTools](./docs/ChoosingTheRightTools.md)
-
 ## [4.🐯The Linux File System](./docs/TheLinuxFilesystem.md)
 ## [5.🦄Understanding the Linux Permission Scheme](docs/UnderstandingtheLinuxPermissionsScheme.md)
