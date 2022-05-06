@@ -145,3 +145,14 @@ drwxrwx--- 2 chamara chamara 4096 Apr 24 04:27 umaskdir
 cp: cannot open 'tallylog' for reading: Permission denied
 
 ```
+
+So, what happened? We used `cd` to change the directory to
+`/var/log/`. We listed the files there using ls with the long option.
+We copied a file with a relative path that we were able to read,
+but that was owned by root:root, to the fully qualified /home/reader/
+directory. When we listed /home/reader/ with the fully qualified
+path, we saw that the copied file was now owned by reader:reader.
+When we tried to do the same for the tallylog file, we got the error
+cannot open 'tallylog' for reading: Permission denied. This should not be
+unexpected, since we do not have any read permissions on that
+file, so copying would be hard.
