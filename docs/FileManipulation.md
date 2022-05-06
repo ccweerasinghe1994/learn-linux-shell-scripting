@@ -59,3 +59,14 @@ drwxrwxr-x 2 chamara chamara 4096 Apr 24 04:24 testdir
 drwxrwx--- 2 chamara chamara 4096 Apr 24 04:27 umaskdir
 -rw-rw---- 1 chamara chamara    0 Apr 24 04:27 umaskfile
 ```
+
+-   Do we always need to be in the `same directory` as the
+`source` and `destination` file?
+-   What about the `permissions` of the file?
+-   Can we also `copy` `directories` with `cp`?
+
+As you might expect, as with many things under Linux, the cp
+command is also very versatile. We can indeed copy files not
+owned by us; we do not need to be in the same directory as the
+file, and we can also copy directories! Let's try a few of these
+things out:
