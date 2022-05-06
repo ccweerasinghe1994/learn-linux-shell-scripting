@@ -142,5 +142,6 @@ drwxrwxr-x 2 chamara chamara 4096 Apr 24 04:24 testdir
 drwxrwx--- 2 chamara chamara 4096 Apr 24 04:27 umaskdir
 -rw-rw---- 1 chamara chamara    0 Apr 24 04:27 umaskfile
 🔥 ➜  log cp tallylog /home/chamara/
-cp: cannot stat 'tallylog': No such file or directory
+cp: cannot open 'tallylog' for reading: Permission denied
 
+```
