@@ -1,26 +1,26 @@
-- [Technical requirements](#technical-requirements)
-- [Using graphical editors for shell scripting](#using-graphical-editors-for-shell-scripting)
-  - [Atom](#atom)
-    - [Atom installation and configuration](#atom-installation-and-configuration)
-  - [Notepad++](#notepad)
-- [Using command-line editors](#using-command-line-editors)
-  - [`Vim`](#vim)
-    - [`Vim` summary](#vim-summary)
-    - [.vimrc](#vimrc)
-    - [`Vim` cheat sheet](#vim-cheat-sheet)
-  - [nano](#nano)
-- [Combining graphical editors with command-line editors when writing shell scripts](#combining-graphical-editors-with-command-line-editors-when-writing-shell-scripts)
-- [Summary](#summary)
-- [Questions](#questions)
-- [Further reading](#further-reading)
+- [🌹 Technical requirements](#-technical-requirements)
+- [🥀 Using graphical editors for shell scripting](#-using-graphical-editors-for-shell-scripting)
+  - [🌺 Atom](#-atom)
+    - [🌻 Atom installation and configuration](#-atom-installation-and-configuration)
+  - [🌼 Notepad++](#-notepad)
+- [🌷 Using command-line editors](#-using-command-line-editors)
+  - [🌱 `Vim`](#-vim)
+    - [🪴 `Vim` summary](#-vim-summary)
+    - [🌲 .vimrc](#-vimrc)
+    - [🌳 `Vim` cheat sheet](#-vim-cheat-sheet)
+  - [🌴 nano](#-nano)
+- [🌵 Combining graphical editors with command-line editors when writing shell scripts](#-combining-graphical-editors-with-command-line-editors-when-writing-shell-scripts)
+- [🌾 Summary](#-summary)
+- [🌿 Questions](#-questions)
+- [☘️ Further reading](#️-further-reading)
 
-### Technical requirements
+### 🌹 Technical requirements
 You will need the virtual machine we created in the previous
 chapter when using `Vim` or nano. If you want to use Notepad++,
 you will need a Windows host machine. For Atom, the host
 machine can run either Linux, macOS, or Windows.
 
-### Using graphical editors for shell scripting
+### 🥀 Using graphical editors for shell scripting
 Tooling has come a long way since the first Unix and Unix-like
 distributions. In the earliest days, writing shell scripts was
 significantly harder than today: the shells were less powerful,
@@ -38,7 +38,7 @@ Notepad++. Both are GUI-based, which we can use for efficient
 shell scripting. If you have a preference for either already, pick
 that one. If you're unsure, we would recommend using Atom.
 
-#### Atom
+#### 🌺 Atom
 The first graphical editor we will consider is Atom, made by
 GitHub. It's described as A hackable text editor for the 21st
 Century. Hackable, in this sense, means that while the default
@@ -73,7 +73,7 @@ packages but are included from the start. For our purposes, the
 core package, `language-shellscript`, will help us in our shell
 scripting endeavors.
 
-##### Atom installation and configuration
+##### 🌻 Atom installation and configuration
 Let's go ahead and install Atom. As long as you're running Linux,
 macOS, or Windows, you can go to `https://atom.io/` and grab the
 installer. Run the installer and, if necessary, follow along with
@@ -133,7 +133,7 @@ the need to edit it on the remote server. Because of this, the Git
 View is not needed in this book, but we mention it since you will
 probably use it for other projects.
 
-#### Notepad++
+#### 🌼 Notepad++
 Where Atom is closer to an` integrated development
 environment (IDE)` than a text editor, Notepad++ is pretty
 much what the name implies: good old Notepad with some
@@ -171,7 +171,7 @@ tasks, you can install plugins to extend functionality, and there
 are many more unique features that make Notepad++ an
 attractive option
 
-### Using command-line editors
+### 🌷 Using command-line editors
 Being able to use command-line editors is a skill anyone working
 with Linux should learn sooner or later. For Linux installations
 with a GUI, this might be substituted with a GUI tool such as
@@ -183,7 +183,7 @@ to command-line editors, we'll go over two of the most popular
 applications that are present on most Linux distributions: `Vim`
 and `GNU nano`.
 
-#### `Vim`
+#### 🌱 `Vim`
 The first command-line text editor we will discuss is perhaps the
 most popular for Linux: `Vim`. `Vim` is derived from the term `Vi
 Improved`, as it is an updated clone of the Unix editor Vi. It was
@@ -202,11 +202,11 @@ Notepad++).
 Let's jump in! Log in to your virtual machine:
 
 ```bash
-$ ssh chamra@192.168.163.131 -p 22
+🔥 -> ~ ssh chamra@192.168.163.131 -p 22
 ```
 Once logged in, open `Vim` to an empty file:
 ```bash
-chamara@ubuntu22:~$ Vim
+🔥 -> ~ Vim
 ```
 You should be greeted by something looking approximately like
 the following:
@@ -226,7 +226,7 @@ we can start to type some text. Press the I key, and your screen
 should switch to insert mode:
 
 ```bash
-chamara@ubuntu22:~$ vim test.txt
+🔥 -> ~ vim test.txt
 ```
 ![alt](img/4.png))
 
@@ -268,7 +268,7 @@ to your Terminal. Note that normally you'll start `Vim` on an
 already existing file by using the following command:
 
 ```bash
-$ vim filename.txt
+🔥 -> ~ vim filename.txt
 ```
 In this case, you do not need to enter a filename when saving and
 exiting; using `:x` is enough in that case. `:x` is actually shorthand
@@ -277,7 +277,7 @@ used to quit. Combined, they are used to save and quit. If you
 want to save your file at any other time during editing, you can
 just use `:w` to accomplish this.
 
-##### `Vim` summary
+##### 🪴 `Vim` summary
 `Vim` has many commands that power users appreciate. For now,
 remember that there are two important modes, normal and
 insert. You can go from normal to insert by pressing I, and you
@@ -297,7 +297,7 @@ tool will get you up to speed with the basic usage of `Vim` really quickly!
 To start, simply navigate to your virtual machine, type `Vim`tutor, and press
 Enter.
 `
-##### .vimrc
+##### 🌲 .vimrc
 
 The .`.vimrc`rc file can be used to set some persistent options for `Vim`.
 Using th  is file, you can customize your `Vim` experience. There
@@ -309,8 +309,8 @@ To create a .`.vimrc` file that will be used when starting `Vim`, do the
 following:
 
 ```bash
-$ cd
-$ vim .vimrc
+🔥 -> ~ cd
+🔥 -> ~ vim .vimrc
 ```
 The first command places you in your home directory (don't worry,
 this will be explained in greater detail later in this book). The
@@ -340,7 +340,7 @@ configuration:
  or more uppercase letters.
 - `set number`: shows line numbers.
 
-##### `Vim` cheat sheet
+##### 🌳 `Vim` cheat sheet
 To get you started off with some great-to-know commands for
 `Vim`, we've incorporated a cheat sheet. After working through
 `vimtutor`, having this cheat sheet nearby almost guarantees you
@@ -354,7 +354,7 @@ practical approach would be to use Shift:
 ![alt](./img/5.png)
 ![alt](./img/6.png)
 
-#### nano
+#### 🌴 nano
 `GNU nano`, commonly referred to as just nano, is another
 command-line editor that is present by default on most Linux
 installations. As the name might suggest, it is part of the GNU
@@ -373,7 +373,7 @@ scripts.
 On your virtual machine, open a nano editor screen:
 
 ```bash
-chamara@ubuntu22:~$ nano
+🔥 -> ~ nano
 ```
 A screen similar to the following should come up:
 ![](./img/7.png)
@@ -419,7 +419,7 @@ without. However, if you can't get used to `Vim`, don't be ashamed
 to use nano: it's a fine editor that will get most jobs done without
 too much hassle!.
 
-### Combining graphical editors with command-line editors when writing shell scripts
+### 🌵 Combining graphical editors with command-line editors when writing shell scripts
 
 To give you an impression of how we like to combine GUI tools
 with command-line editors, we've given the following example
@@ -471,7 +471,7 @@ see whether you have applied all the changes you made on the
 server to your GUI session as well. Once that is done, commit it,
 and you're finished!
 
-### Summary
+### 🌾 Summary
 In this chapter, we discussed four text editing tools, divided into
 two types: GUI-based editors (Atom and Notepad++) and
 command-line editors (`Vim` and `GNU nano`), before showing
@@ -501,7 +501,7 @@ editors in combination with command-line editors.
 The following commands were introduced in this chapter: `Vim`,
 `nano`, and `ls`.
 
-### Questions
+### 🌿 Questions
 1. Why is syntax highlighting an important feature for text
 editors?
 2. How can we extend the functionality already provided by
@@ -516,7 +516,7 @@ scripts?
 8. Why would we want to combine GUI editors with
 command-line editors?
 
-### Further reading
+### ☘️ Further reading
 The following resource might be interesting if you'd like to go
 - deeper into the subjects of this chapter:
 Hacking `Vim` 7.2 by Kim Schulz, Packt Publishing: https://
