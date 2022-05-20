@@ -1,0 +1,54 @@
+{
+  "status": 200,
+  "message": "Success",
+  "data": [
+    {
+      "countryCode": "LK",
+      "countryName": "Sri Lanka",
+      "cities": [
+        {
+          "cityName": "Colombo",
+          "locations": ["623c6020b97fd4001e5aa81a", "6280c1c71ff8c10020ac3493"]
+        },
+        {
+          "cityName": "Chunnakam",
+          "locations": ["623c62b8b97fd4001e5aa843"]
+        }
+      ]
+    },
+    {
+      "countryCode": "UK",
+      "countryName": "United Kingdom",
+      "cities": [
+        {
+          "cityName": "imbulgoda",
+          "locations": ["62443dc4d0aa0c002013cd4f"]
+        },
+        {
+          "cityName": "Greater London",
+          "locations": ["624449c1d0aa0c002013d018"]
+        }
+      ]
+    },
+    {
+      "countryCode": "SA",
+      "countryName": "Saudi Arabia",
+      "cities": [
+        {
+          "cityName": "Ar-Riyad",
+          "locations": ["62444b50d0aa0c002013d08c"]
+        }
+      ]
+    },
+    {
+      "countryCode": "IN",
+      "countryName": "India",
+      "cities": [
+        {
+          "cityName": "Nagpur",
+          "locations": ["62444b55d0aa0c002013d08e"]
+        }
+      ]
+    }
+  ]
+}
